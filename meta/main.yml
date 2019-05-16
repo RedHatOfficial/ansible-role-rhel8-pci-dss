@@ -2,6 +2,7 @@ galaxy_info:
   role_name: rhel8_pci_dss
   author: ComplianceAsCode development team
   description: PCI-DSS v3.2.1 Control Baseline for Red Hat Enterprise Linux 8
+  company: "Red Hat, Inc."
 
   issue_tracker_url: https://github.com/ComplianceAsCode/content/issues
 
@@ -10,15 +11,9 @@ galaxy_info:
   min_ansible_version: 2.5
 
   platforms:
-  - name: GenericBSD
+  - name: EL
     versions:
-    - any
-  - name: GenericLinux
-    versions:
-    - any
-  - name: GenericUNIX
-    versions:
-    - any
+    - 8
 
   galaxy_tags:
   - system
@@ -28,6 +23,9 @@ galaxy_info:
   - scap
   - security
   - compliance
-  - compliaceascode
+  - complianceascode
+  - pcidss
+  - redhatofficial
+  - redhat
 
 dependencies: []
