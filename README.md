@@ -1,10 +1,10 @@
-# PCI-DSS v3.2.1 Control Baseline for Red Hat Enterprise Linux 7
+# PCI-DSS v3.2.1 Control Baseline for Red Hat Enterprise Linux 8
 
 [![Build Status](https://travis-ci.org/RedHatOfficial/ansible-role-rhel8-pci-dss.svg?branch=master)](https://travis-ci.org/RedHatOfficial/ansible-role-rhel8-pci-dss)
 [![Ansible Role](https://img.shields.io/ansible/role/40358.svg)](https://galaxy.ansible.com/RedHatOfficial/rhel8_pci_dss)
 [![GitHub release](https://img.shields.io/github/release/RedHatOfficial/ansible-role-rhel8-pci-dss.svg)](https://github.com/RedHatOfficial/ansible-role-rhel8-pci-dss/releases/latest)
 
-Ansible Role for PCI-DSS v3.2.1 Control Baseline for Red Hat Enterprise Linux 7
+Ansible Role for PCI-DSS v3.2.1 Control Baseline for Red Hat Enterprise Linux 8
 
 Profile Description:  
 Ensures PCI-DSS v3.2.1 security configuration settings are applied.
