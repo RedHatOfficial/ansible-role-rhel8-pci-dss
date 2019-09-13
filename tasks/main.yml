@@ -34,6 +34,7 @@
   - NIST-800-53-SA-8(i)
   - NIST-800-53-AC-12
   - NIST-800-53-AC-17(b)
+  - NIST-800-53-SC-10
   - NIST-800-171-3.1.11
   - PCI-DSS-Req-8.1.8
   - CJIS-5.5.6
@@ -265,7 +266,8 @@
 - name: Read signatures in GPG key
   shell: 'set -o pipefail
 
-    gpg --show-key --with-colons "/etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release" | grep "^fpr" | cut -d ":" -f 10
+    gpg --show-keys --with-fingerprint --with-colons "/etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release" | grep -A1 "^pub" | grep
+    "^fpr" | cut -d ":" -f 10
 
     '
   args:
@@ -299,7 +301,7 @@
 
 - name: Set Fact - Valid fingerprints
   set_fact:
-    gpg_valid_fingerprints: ("567E347AD0044ADE55BA8A5F199E2F91FD431D51" "43A6E49C4A38F4BE9ABF2A5345689C882FA658E0")
+    gpg_valid_fingerprints: ("567E347AD0044ADE55BA8A5F199E2F91FD431D51" "6A6AA7C97C8890AEC6AEBFE2F76F66C3D4082792")
   tags:
   - ensure_redhat_gpgkey_installed
   - high_severity
@@ -698,6 +700,7 @@
     executable: /bin/bash
   register: files_with_incorrect_hash
   changed_when: false
+  failed_when: files_with_incorrect_hash.rc > 1
   when:
   - (package_manager_reinstall_cmd is defined)
   - high_complexity | bool
@@ -762,7 +765,7 @@
     warn: false
     executable: /bin/bash
   register: files_with_incorrect_permissions
-  failed_when: false
+  failed_when: files_with_incorrect_permissions.rc > 1
   changed_when: false
   check_mode: false
   tags:
@@ -1652,6 +1655,7 @@
     regexp: ^\s*max_log_file\s*=\s*.*$
     line: max_log_file = {{ var_auditd_max_log_file }}
     state: present
+    create: true
   when:
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - no_reboot_needed | bool
@@ -1680,6 +1684,7 @@
     line: num_logs = {{ var_auditd_num_logs }}
     regexp: ^\s*num_logs\s*=\s*.*$
     state: present
+    create: true
   when:
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - no_reboot_needed | bool
@@ -1708,6 +1713,7 @@
     dest: /etc/audit/plugins.d/syslog.conf
     regexp: ^active
     line: active = yes
+    create: true
   when:
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - auditd_audispd_syslog_plugin_activated | bool
@@ -1736,6 +1742,7 @@
     dest: /etc/audit/auditd.conf
     line: action_mail_acct = {{ var_auditd_action_mail_acct }}
     state: present
+    create: true
   when:
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - no_reboot_needed | bool
@@ -1767,6 +1774,7 @@
     line: admin_space_left_action = {{ var_auditd_admin_space_left_action }}
     regexp: ^\s*admin_space_left_action\s*=\s*.*$
     state: present
+    create: true
   when:
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - no_reboot_needed | bool
@@ -1797,6 +1805,7 @@
     line: space_left_action = {{ var_auditd_space_left_action }}
     regexp: ^\s*space_left_action\s*=\s*.*$
     state: present
+    create: true
   when:
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - no_reboot_needed | bool
@@ -1828,6 +1837,7 @@
     line: max_log_file_action = {{ var_auditd_max_log_file_action }}
     regexp: ^\s*max_log_file_action\s*=\s*.*$
     state: present
+    create: true
   when:
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - no_reboot_needed | bool
@@ -2055,6 +2065,7 @@
     line: -a always,exit -F arch=b32 -S fremovexattr -F auid>=1000 -F auid!=unset -F key=perm_mod
     state: present
     dest: /etc/audit/audit.rules
+    create: true
   when:
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - restrict_strategy | bool
@@ -2322,6 +2333,7 @@
     line: -a always,exit -F arch=b32 -S fchmod -F auid>=1000 -F auid!=unset -F key=perm_mod
     state: present
     dest: /etc/audit/audit.rules
+    create: true
   when:
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - restrict_strategy | bool
@@ -2589,6 +2601,7 @@
     line: -a always,exit -F arch=b32 -S fsetxattr -F auid>=1000 -F auid!=unset -F key=perm_mod
     state: present
     dest: /etc/audit/audit.rules
+    create: true
   when:
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - audit_rules_dac_modification_fsetxattr | bool
@@ -2856,6 +2869,7 @@
     line: -a always,exit -F arch=b32 -S fchown -F auid>=1000 -F auid!=unset -F key=perm_mod
     state: present
     dest: /etc/audit/audit.rules
+    create: true
   when:
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - audit_rules_dac_modification_fchown | bool
@@ -3123,6 +3137,7 @@
     line: -a always,exit -F arch=b32 -S fchownat -F auid>=1000 -F auid!=unset -F key=perm_mod
     state: present
     dest: /etc/audit/audit.rules
+    create: true
   when:
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - audit_rules_dac_modification_fchownat | bool
@@ -3390,6 +3405,7 @@
     line: -a always,exit -F arch=b32 -S chmod -F auid>=1000 -F auid!=unset -F key=perm_mod
     state: present
     dest: /etc/audit/audit.rules
+    create: true
   when:
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - restrict_strategy | bool
@@ -3657,6 +3673,7 @@
     line: -a always,exit -F arch=b32 -S lremovexattr -F auid>=1000 -F auid!=unset -F key=perm_mod
     state: present
     dest: /etc/audit/audit.rules
+    create: true
   when:
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - restrict_strategy | bool
@@ -3924,6 +3941,7 @@
     line: -a always,exit -F arch=b32 -S fchmodat -F auid>=1000 -F auid!=unset -F key=perm_mod
     state: present
     dest: /etc/audit/audit.rules
+    create: true
   when:
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - restrict_strategy | bool
@@ -4191,6 +4209,7 @@
     line: -a always,exit -F arch=b32 -S lchown -F auid>=1000 -F auid!=unset -F key=perm_mod
     state: present
     dest: /etc/audit/audit.rules
+    create: true
   when:
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - restrict_strategy | bool
@@ -4458,6 +4477,7 @@
     line: -a always,exit -F arch=b32 -S chown -F auid>=1000 -F auid!=unset -F key=perm_mod
     state: present
     dest: /etc/audit/audit.rules
+    create: true
   when:
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - audit_rules_dac_modification_chown | bool
@@ -4725,6 +4745,7 @@
     line: -a always,exit -F arch=b32 -S lsetxattr -F auid>=1000 -F auid!=unset -F key=perm_mod
     state: present
     dest: /etc/audit/audit.rules
+    create: true
   when:
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - audit_rules_dac_modification_lsetxattr | bool
@@ -4992,6 +5013,7 @@
     line: -a always,exit -F arch=b32 -S setxattr -F auid>=1000 -F auid!=unset -F key=perm_mod
     state: present
     dest: /etc/audit/audit.rules
+    create: true
   when:
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - audit_rules_dac_modification_setxattr | bool
@@ -5259,6 +5281,7 @@
     line: -a always,exit -F arch=b32 -S removexattr -F auid>=1000 -F auid!=unset -F key=perm_mod
     state: present
     dest: /etc/audit/audit.rules
+    create: true
   when:
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - restrict_strategy | bool
@@ -5835,6 +5858,7 @@
     line: '{{ item }}'
     state: present
     dest: /etc/audit/audit.rules
+    create: true
   with_items:
   - -a always,exit -F arch=b32 -S ftruncate -F exit=-EACCES -F auid>=1000 -F auid!=unset -F key=access
   - -a always,exit -F arch=b32 -S ftruncate -F exit=-EPERM -F auid>=1000 -F auid!=unset -F key=access
@@ -6114,6 +6138,7 @@
     line: '{{ item }}'
     state: present
     dest: /etc/audit/audit.rules
+    create: true
   with_items:
   - -a always,exit -F arch=b32 -S truncate -F exit=-EACCES -F auid>=1000 -F auid!=unset -F key=access
   - -a always,exit -F arch=b32 -S truncate -F exit=-EPERM -F auid>=1000 -F auid!=unset -F key=access
@@ -6393,6 +6418,7 @@
     line: '{{ item }}'
     state: present
     dest: /etc/audit/audit.rules
+    create: true
   with_items:
   - -a always,exit -F arch=b32 -S open_by_handle_at -F exit=-EACCES -F auid>=1000 -F auid!=unset -F key=access
   - -a always,exit -F arch=b32 -S open_by_handle_at -F exit=-EPERM -F auid>=1000 -F auid!=unset -F key=access
@@ -6672,6 +6698,7 @@
     line: '{{ item }}'
     state: present
     dest: /etc/audit/audit.rules
+    create: true
   with_items:
   - -a always,exit -F arch=b32 -S openat -F exit=-EACCES -F auid>=1000 -F auid!=unset -F key=access
   - -a always,exit -F arch=b32 -S openat -F exit=-EPERM -F auid>=1000 -F auid!=unset -F key=access
@@ -6951,6 +6978,7 @@
     line: '{{ item }}'
     state: present
     dest: /etc/audit/audit.rules
+    create: true
   with_items:
   - -a always,exit -F arch=b32 -S open -F exit=-EACCES -F auid>=1000 -F auid!=unset -F key=access
   - -a always,exit -F arch=b32 -S open -F exit=-EPERM -F auid>=1000 -F auid!=unset -F key=access
@@ -7224,6 +7252,7 @@
     line: -a always,exit -F arch=b32 -S renameat -F auid>=1000 -F auid!=unset -F key=delete
     state: present
     dest: /etc/audit/audit.rules
+    create: true
   when:
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - restrict_strategy | bool
@@ -7491,6 +7520,7 @@
     line: -a always,exit -F arch=b32 -S unlinkat -F auid>=1000 -F auid!=unset -F key=delete
     state: present
     dest: /etc/audit/audit.rules
+    create: true
   when:
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - audit_rules_file_deletion_events_unlinkat | bool
@@ -7758,6 +7788,7 @@
     line: -a always,exit -F arch=b32 -S rename -F auid>=1000 -F auid!=unset -F key=delete
     state: present
     dest: /etc/audit/audit.rules
+    create: true
   when:
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - restrict_strategy | bool
@@ -8025,6 +8056,7 @@
     line: -a always,exit -F arch=b32 -S rmdir -F auid>=1000 -F auid!=unset -F key=delete
     state: present
     dest: /etc/audit/audit.rules
+    create: true
   when:
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - audit_rules_file_deletion_events_rmdir | bool
@@ -8292,6 +8324,7 @@
     line: -a always,exit -F arch=b32 -S unlink -F auid>=1000 -F auid!=unset -F key=delete
     state: present
     dest: /etc/audit/audit.rules
+    create: true
   when:
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - restrict_strategy | bool
@@ -8875,186 +8908,6 @@
   - NIST-800-171-3.1.7
   - PCI-DSS-Req-10.2.7
 
-- name: Set architecture for audit create_module tasks
-  set_fact:
-    audit_arch: b{{ ansible_architecture | regex_replace('.*(\d\d$)','\1') }}
-  when:
-  - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
-  - no_reboot_needed | bool
-  - medium_severity | bool
-  - configure_strategy | bool
-  - audit_rules_kernel_module_loading_create | bool
-  - low_disruption | bool
-  - low_complexity | bool
-  tags:
-  - audit_rules_kernel_module_loading_create
-  - medium_severity
-  - configure_strategy
-  - low_complexity
-  - low_disruption
-  - no_reboot_needed
-  - CCE-80710-7
-
-- name: Search /etc/audit/rules.d for audit rule entries
-  find:
-    paths: /etc/audit/rules.d
-    recurse: false
-    contains: ^.*create_module.*$
-    patterns: '*.rules'
-  register: find_create_module
-  when:
-  - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
-  - no_reboot_needed | bool
-  - medium_severity | bool
-  - configure_strategy | bool
-  - audit_rules_kernel_module_loading_create | bool
-  - low_disruption | bool
-  - low_complexity | bool
-  tags:
-  - audit_rules_kernel_module_loading_create
-  - medium_severity
-  - configure_strategy
-  - low_complexity
-  - low_disruption
-  - no_reboot_needed
-  - CCE-80710-7
-
-- name: Use /etc/audit/rules.d/privileged.rules as the recipient for the rule
-  set_fact:
-    all_files:
-    - /etc/audit/rules.d/privileged.rules
-  when:
-  - find_create_module.matched is defined and find_create_module.matched == 0
-  - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
-  - no_reboot_needed | bool
-  - medium_severity | bool
-  - configure_strategy | bool
-  - audit_rules_kernel_module_loading_create | bool
-  - low_disruption | bool
-  - low_complexity | bool
-  tags:
-  - audit_rules_kernel_module_loading_create
-  - medium_severity
-  - configure_strategy
-  - low_complexity
-  - low_disruption
-  - no_reboot_needed
-  - CCE-80710-7
-
-- name: Use matched file as the recipient for the rule
-  set_fact:
-    all_files:
-    - '{{ find_create_module.files | map(attribute=''path'') | list | first }}'
-  when:
-  - find_create_module.matched is defined and find_create_module.matched > 0
-  - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
-  - no_reboot_needed | bool
-  - medium_severity | bool
-  - configure_strategy | bool
-  - audit_rules_kernel_module_loading_create | bool
-  - low_disruption | bool
-  - low_complexity | bool
-  tags:
-  - audit_rules_kernel_module_loading_create
-  - medium_severity
-  - configure_strategy
-  - low_complexity
-  - low_disruption
-  - no_reboot_needed
-  - CCE-80710-7
-
-- name: Inserts/replaces the create_module rule in rules.d
-  lineinfile:
-    path: '{{ all_files[0] }}'
-    line: -a always,exit -F arch=b32 -S create_module -k module-change
-    state: present
-    create: true
-  when:
-  - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
-  - no_reboot_needed | bool
-  - medium_severity | bool
-  - configure_strategy | bool
-  - audit_rules_kernel_module_loading_create | bool
-  - low_disruption | bool
-  - low_complexity | bool
-  tags:
-  - audit_rules_kernel_module_loading_create
-  - medium_severity
-  - configure_strategy
-  - low_complexity
-  - low_disruption
-  - no_reboot_needed
-  - CCE-80710-7
-
-- name: Inserts/replaces the create_module rule in rules.d on x86_64
-  lineinfile:
-    path: '{{ all_files[0] }}'
-    line: -a always,exit -F arch=b64 -S create_module -k module-change
-    state: present
-    create: true
-  when:
-  - audit_arch is defined and audit_arch == 'b64'
-  - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
-  - no_reboot_needed | bool
-  - medium_severity | bool
-  - configure_strategy | bool
-  - audit_rules_kernel_module_loading_create | bool
-  - low_disruption | bool
-  - low_complexity | bool
-  tags:
-  - audit_rules_kernel_module_loading_create
-  - medium_severity
-  - configure_strategy
-  - low_complexity
-  - low_disruption
-  - no_reboot_needed
-  - CCE-80710-7
-
-- name: Inserts/replaces the create_module rule in audit.rules
-  lineinfile:
-    path: /etc/audit/audit.rules
-    line: -a always,exit -F arch=b32 -S create_module -k module-change
-    create: true
-  when:
-  - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
-  - no_reboot_needed | bool
-  - medium_severity | bool
-  - configure_strategy | bool
-  - audit_rules_kernel_module_loading_create | bool
-  - low_disruption | bool
-  - low_complexity | bool
-  tags:
-  - audit_rules_kernel_module_loading_create
-  - medium_severity
-  - configure_strategy
-  - low_complexity
-  - low_disruption
-  - no_reboot_needed
-  - CCE-80710-7
-
-- name: Inserts/replaces the create_module rule in audit.rules when on x86_64
-  lineinfile:
-    path: /etc/audit/audit.rules
-    line: -a always,exit -F arch=b64 -S create_module -k module-change
-    create: true
-  when:
-  - audit_arch is defined and audit_arch == 'b64'
-  - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
-  - no_reboot_needed | bool
-  - medium_severity | bool
-  - configure_strategy | bool
-  - audit_rules_kernel_module_loading_create | bool
-  - low_disruption | bool
-  - low_complexity | bool
-  tags:
-  - audit_rules_kernel_module_loading_create
-  - medium_severity
-  - configure_strategy
-  - low_complexity
-  - low_disruption
-  - no_reboot_needed
-  - CCE-80710-7
-
 - name: Set architecture for audit finit_module tasks
   set_fact:
     audit_arch: b{{ ansible_architecture | regex_replace('.*(\d\d$)','\1') }}
@@ -9491,6 +9344,7 @@
     line: -w /etc/security/opasswd -p wa -k audit_rules_usergroup_modification
     state: present
     dest: /etc/audit/audit.rules
+    create: true
   when:
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - restrict_strategy | bool
@@ -9696,6 +9550,7 @@
     line: -w /etc/shadow -p wa -k audit_rules_usergroup_modification
     state: present
     dest: /etc/audit/audit.rules
+    create: true
   when:
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - audit_rules_usergroup_modification_shadow | bool
@@ -9901,6 +9756,7 @@
     line: -w /etc/gshadow -p wa -k audit_rules_usergroup_modification
     state: present
     dest: /etc/audit/audit.rules
+    create: true
   when:
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - audit_rules_usergroup_modification_gshadow | bool
@@ -10106,6 +9962,7 @@
     line: -w /etc/passwd -p wa -k audit_rules_usergroup_modification
     state: present
     dest: /etc/audit/audit.rules
+    create: true
   when:
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - restrict_strategy | bool
@@ -10311,6 +10168,7 @@
     line: -w /etc/group -p wa -k audit_rules_usergroup_modification
     state: present
     dest: /etc/audit/audit.rules
+    create: true
   when:
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - restrict_strategy | bool
@@ -10475,10 +10333,17 @@
   - CJIS-5.4.1.1
 
 - name: Enable service auditd
-  service:
-    name: auditd
-    enabled: 'yes'
-    state: started
+  block:
+  - name: Gather the package facts
+    package_facts:
+      manager: auto
+  - name: Enable service auditd
+    service:
+      name: auditd
+      enabled: 'yes'
+      state: started
+    when:
+    - '"audit" in ansible_facts.packages'
   when:
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - no_reboot_needed | bool
@@ -10649,80 +10514,18 @@
   - no_reboot_needed
   - CCE-80993-9
 
-- name: Check existence of pkcs11-switch
-  stat:
-    path: /usr/bin/pkcs11-switch
-  register: pkcs11switch
-  when:
-  - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
-  - no_reboot_needed | bool
-  - configure_opensc_nss_db | bool
-  - medium_severity | bool
-  - configure_strategy | bool
-  - low_disruption | bool
-  - low_complexity | bool
-  tags:
-  - configure_opensc_nss_db
-  - medium_severity
-  - configure_strategy
-  - low_complexity
-  - low_disruption
-  - no_reboot_needed
-  - CCE-80767-7
-  - NIST-800-53-IA-2(2)
-  - PCI-DSS-Req-8.3
-
-- name: Get NSS database smart card configuration
-  command: /usr/bin/pkcs11-switch
-  changed_when: true
-  register: pkcsw_output
-  when:
-  - pkcs11switch.stat.exists
-  - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
-  - no_reboot_needed | bool
-  - configure_opensc_nss_db | bool
-  - medium_severity | bool
-  - configure_strategy | bool
-  - low_disruption | bool
-  - low_complexity | bool
-  tags:
-  - configure_opensc_nss_db
-  - medium_severity
-  - configure_strategy
-  - low_complexity
-  - low_disruption
-  - no_reboot_needed
-  - CCE-80767-7
-  - NIST-800-53-IA-2(2)
-  - PCI-DSS-Req-8.3
-
-- name: Configure NSS DB To Use opensc
-  command: /usr/bin/pkcs11-switch opensc
-  when:
-  - pkcs11switch.stat.exists and pkcsw_output.stdout != "opensc"
-  - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
-  - no_reboot_needed | bool
-  - configure_opensc_nss_db | bool
-  - medium_severity | bool
-  - configure_strategy | bool
-  - low_disruption | bool
-  - low_complexity | bool
-  tags:
-  - configure_opensc_nss_db
-  - medium_severity
-  - configure_strategy
-  - low_complexity
-  - low_disruption
-  - no_reboot_needed
-  - CCE-80767-7
-  - NIST-800-53-IA-2(2)
-  - PCI-DSS-Req-8.3
-
 - name: Enable service pcscd
-  service:
-    name: pcscd
-    enabled: 'yes'
-    state: started
+  block:
+  - name: Gather the package facts
+    package_facts:
+      manager: auto
+  - name: Enable service pcscd
+    service:
+      name: pcscd
+      enabled: 'yes'
+      state: started
+    when:
+    - '"pcsc-lite" in ansible_facts.packages'
   when:
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - no_reboot_needed | bool
@@ -10850,6 +10653,7 @@
     regexp: ^#?ENCRYPT_METHOD
     line: ENCRYPT_METHOD SHA512
     state: present
+    create: true
   tags:
   - set_password_hashing_algorithm_logindefs
   - medium_severity
@@ -10880,6 +10684,7 @@
     regexp: ^#?crypt_style
     line: crypt_style = sha512
     state: present
+    create: true
   tags:
   - set_password_hashing_algorithm_libuserconf
   - medium_severity
