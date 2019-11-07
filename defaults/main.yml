@@ -1,25 +1,24 @@
 ---
 # defaults file for rhel8_pci_dss
-
-inactivity_timeout_value: true
-sshd_idle_timeout_value: true
-var_account_disable_post_pw_expiration: true
-var_accounts_maximum_age_login_defs: true
-var_accounts_passwords_pam_faillock_deny: true
-var_accounts_passwords_pam_faillock_unlock_time: true
-var_auditd_action_mail_acct: true
-var_auditd_admin_space_left_action: true
-var_auditd_max_log_file: true
-var_auditd_max_log_file_action: true
-var_auditd_num_logs: true
-var_auditd_space_left_action: true
-var_password_pam_dcredit: true
-var_password_pam_lcredit: true
-var_password_pam_minlen: true
-var_password_pam_ucredit: true
-var_password_pam_unix_remember: true
-var_smartcard_drivers: true
-var_system_crypto_policy: true
+inactivity_timeout_value: '900'
+var_system_crypto_policy: DEFAULT
+var_auditd_max_log_file: '6'
+var_auditd_num_logs: '5'
+var_auditd_action_mail_acct: root
+var_auditd_admin_space_left_action: single
+var_auditd_space_left_action: email
+var_auditd_max_log_file_action: rotate
+var_smartcard_drivers: cac
+var_password_pam_dcredit: '-1'
+var_password_pam_lcredit: '-1'
+var_password_pam_minlen: '7'
+var_password_pam_ucredit: '-1'
+var_accounts_passwords_pam_faillock_unlock_time: '1800'
+var_accounts_passwords_pam_faillock_deny: '6'
+var_password_pam_unix_remember: '4'
+var_account_disable_post_pw_expiration: '90'
+var_accounts_maximum_age_login_defs: '90'
+sshd_idle_timeout_value: '900'
 account_disable_post_pw_expiration: true
 accounts_maximum_age_login_defs: true
 accounts_password_pam_dcredit: true
