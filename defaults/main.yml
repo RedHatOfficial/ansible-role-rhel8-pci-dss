@@ -1,23 +1,23 @@
 ---
 # defaults file for rhel8_pci_dss
-var_auditd_num_logs: '5'
-var_auditd_max_log_file: '6'
-var_auditd_action_mail_acct: root
-var_auditd_space_left_action: email
-var_auditd_admin_space_left_action: single
-var_auditd_max_log_file_action: rotate
 inactivity_timeout_value: '900'
 var_system_crypto_policy: DEFAULT
-var_account_disable_post_pw_expiration: '90'
+var_smartcard_drivers: cac
 var_accounts_maximum_age_login_defs: '90'
-var_password_pam_unix_remember: '4'
+var_account_disable_post_pw_expiration: '90'
 var_accounts_passwords_pam_faillock_deny: '6'
 var_accounts_passwords_pam_faillock_unlock_time: '1800'
-var_password_pam_ucredit: '-1'
+var_password_pam_unix_remember: '4'
 var_password_pam_lcredit: '-1'
-var_password_pam_dcredit: '-1'
 var_password_pam_minlen: '7'
-var_smartcard_drivers: cac
+var_password_pam_dcredit: '-1'
+var_password_pam_ucredit: '-1'
+var_auditd_action_mail_acct: root
+var_auditd_space_left_action: email
+var_auditd_max_log_file_action: rotate
+var_auditd_admin_space_left_action: single
+var_auditd_num_logs: '5'
+var_auditd_max_log_file: '6'
 sshd_idle_timeout_value: '900'
 account_disable_post_pw_expiration: true
 accounts_maximum_age_login_defs: true
@@ -74,6 +74,7 @@ configure_crypto_policy: true
 configure_kerberos_crypto_policy: true
 configure_libreswan_crypto_policy: true
 configure_opensc_card_drivers: true
+configure_openssl_crypto_policy: true
 configure_ssh_crypto_policy: true
 configure_strategy: true
 dconf_gnome_screensaver_idle_activation_enabled: true
