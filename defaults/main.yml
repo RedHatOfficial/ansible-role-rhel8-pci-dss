@@ -19,6 +19,7 @@ var_auditd_max_log_file: '6'
 var_auditd_max_log_file_action: rotate
 var_auditd_num_logs: '5'
 var_auditd_space_left_action: email
+var_multiple_time_servers: 0.rhel.pool.ntp.org,1.rhel.pool.ntp.org,2.rhel.pool.ntp.org,3.rhel.pool.ntp.org
 sshd_idle_timeout_value: '900'
 account_disable_post_pw_expiration: true
 accounts_maximum_age_login_defs: true
@@ -82,6 +83,7 @@ auditd_data_retention_max_log_file: true
 auditd_data_retention_max_log_file_action: true
 auditd_data_retention_num_logs: true
 auditd_data_retention_space_left_action: true
+chronyd_or_ntpd_specify_multiple_servers: true
 configure_crypto_policy: true
 configure_kerberos_crypto_policy: true
 configure_libreswan_crypto_policy: true
@@ -134,6 +136,7 @@ rpm_verify_hashes: true
 rpm_verify_permissions: true
 security_patches_up_to_date: true
 service_auditd_enabled: true
+service_chronyd_or_ntpd_enabled: true
 service_pcscd_enabled: true
 set_password_hashing_algorithm_libuserconf: true
 set_password_hashing_algorithm_logindefs: true
