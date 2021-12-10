@@ -537,6 +537,7 @@
     create: true
   tags:
   - CCE-80935-0
+  - DISA-STIG-RHEL-08-010020
   - NIST-800-53-AC-17(2)
   - NIST-800-53-AC-17(a)
   - NIST-800-53-CM-6(a)
@@ -562,6 +563,7 @@
   command: /usr/bin/update-crypto-policies --set {{ var_system_crypto_policy }}
   tags:
   - CCE-80935-0
+  - DISA-STIG-RHEL-08-010020
   - NIST-800-53-AC-17(2)
   - NIST-800-53-AC-17(a)
   - NIST-800-53-CM-6(a)
@@ -590,6 +592,7 @@
     state: link
   tags:
   - CCE-80936-8
+  - DISA-STIG-RHEL-08-010020
   - NIST-800-53-SC-12(2)
   - NIST-800-53-SC-12(3)
   - NIST-800-53-SC-13
@@ -614,6 +617,7 @@
     create: true
   tags:
   - CCE-80937-6
+  - DISA-STIG-RHEL-08-010020
   - NIST-800-53-CM-6(a)
   - NIST-800-53-MA-4(6)
   - NIST-800-53-SC-12(2)
@@ -735,6 +739,7 @@
     regexp: ^\s*CRYPTO_POLICY.*$
   tags:
   - CCE-80939-2
+  - DISA-STIG-RHEL-08-010020
   - NIST-800-53-AC-17(2)
   - NIST-800-53-AC-17(a)
   - NIST-800-53-CM-6(a)
@@ -1899,6 +1904,60 @@
   replace:
     dest: /etc/pam.d/system-auth
     regexp: ^password\s+sufficient\s+pam_unix\.so\s(?!.*remember\s*=\s*).*$
+    replace: \g<0> remember={{ var_password_pam_unix_remember }}
+  when:
+  - accounts_password_pam_unix_remember | bool
+  - configure_strategy | bool
+  - low_complexity | bool
+  - medium_disruption | bool
+  - medium_severity | bool
+  - no_reboot_needed | bool
+  - '"pam" in ansible_facts.packages'
+  tags:
+  - CCE-80666-1
+  - CJIS-5.6.2.1.1
+  - NIST-800-171-3.5.8
+  - NIST-800-53-IA-5(1)(e)
+  - NIST-800-53-IA-5(f)
+  - PCI-DSS-Req-8.2.5
+  - accounts_password_pam_unix_remember
+  - configure_strategy
+  - low_complexity
+  - medium_disruption
+  - medium_severity
+  - no_reboot_needed
+
+- name: Do not allow users to reuse recent passwords - system-auth (change)
+  replace:
+    dest: /etc/pam.d/system-auth
+    regexp: ^(password\s+(?:(?:requisite)|(?:required))\s+pam_pwhistory\.so\s.*remember\s*=\s*)(\S+)(.*)$
+    replace: \g<1>{{ var_password_pam_unix_remember }}\g<3>
+  when:
+  - accounts_password_pam_unix_remember | bool
+  - configure_strategy | bool
+  - low_complexity | bool
+  - medium_disruption | bool
+  - medium_severity | bool
+  - no_reboot_needed | bool
+  - '"pam" in ansible_facts.packages'
+  tags:
+  - CCE-80666-1
+  - CJIS-5.6.2.1.1
+  - NIST-800-171-3.5.8
+  - NIST-800-53-IA-5(1)(e)
+  - NIST-800-53-IA-5(f)
+  - PCI-DSS-Req-8.2.5
+  - accounts_password_pam_unix_remember
+  - configure_strategy
+  - low_complexity
+  - medium_disruption
+  - medium_severity
+  - no_reboot_needed
+
+- name: Do not allow users to reuse recent passwords - system-auth (add)
+  replace:
+    dest: /etc/pam.d/system-auth
+    regexp: ^password\s+(?:(?:requisite)|(?:required))\s+pam_pwhistory\.so\s(?!.*remember\s*=\s*).*$
     replace: \g<0> remember={{ var_password_pam_unix_remember }}
   when:
   - accounts_password_pam_unix_remember | bool
@@ -20286,7 +20345,7 @@
   - NIST-800-171-3.3.7
   - NIST-800-53-AU-8(1)(a)
   - NIST-800-53-CM-6(a)
-  - PCI-DSS-Req-10.4
+  - PCI-DSS-Req-10.4.1
   - enable_strategy
   - low_complexity
   - low_disruption
@@ -20317,7 +20376,7 @@
   - NIST-800-171-3.3.7
   - NIST-800-53-AU-8(1)(a)
   - NIST-800-53-CM-6(a)
-  - PCI-DSS-Req-10.4
+  - PCI-DSS-Req-10.4.1
   - enable_strategy
   - low_complexity
   - low_disruption
@@ -20346,7 +20405,7 @@
   - NIST-800-171-3.3.7
   - NIST-800-53-AU-8(1)(a)
   - NIST-800-53-CM-6(a)
-  - PCI-DSS-Req-10.4
+  - PCI-DSS-Req-10.4.1
   - enable_strategy
   - low_complexity
   - low_disruption
@@ -20375,7 +20434,7 @@
   - NIST-800-171-3.3.7
   - NIST-800-53-AU-8(1)(a)
   - NIST-800-53-CM-6(a)
-  - PCI-DSS-Req-10.4
+  - PCI-DSS-Req-10.4.1
   - enable_strategy
   - low_complexity
   - low_disruption
