@@ -95,6 +95,7 @@ dconf_gnome_screensaver_idle_activation_enabled: true
 dconf_gnome_screensaver_idle_delay: true
 dconf_gnome_screensaver_lock_enabled: true
 dconf_gnome_screensaver_mode_blank: true
+dconf_gnome_session_idle_user_locks: true
 disable_strategy: true
 display_login_attempts: true
 enable_strategy: true
