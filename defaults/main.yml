@@ -11,6 +11,7 @@ var_password_pam_lcredit: '-1'
 var_password_pam_minlen: '7'
 var_password_pam_ucredit: '-1'
 var_password_hashing_algorithm: SHA512
+var_logind_session_timeout: '900'
 var_smartcard_drivers: cac
 var_account_disable_post_pw_expiration: '90'
 var_accounts_maximum_age_login_defs: '90'
@@ -33,7 +34,7 @@ DISA_STIG_RHEL_08_010293: true
 DISA_STIG_RHEL_08_010359: true
 DISA_STIG_RHEL_08_010370: true
 DISA_STIG_RHEL_08_010410: true
-DISA_STIG_RHEL_08_020010: true
+DISA_STIG_RHEL_08_020011: true
 DISA_STIG_RHEL_08_020016: true
 DISA_STIG_RHEL_08_020030: true
 DISA_STIG_RHEL_08_020060: true
@@ -48,6 +49,7 @@ DISA_STIG_RHEL_08_020260: true
 DISA_STIG_RHEL_08_020331: true
 DISA_STIG_RHEL_08_020340: true
 DISA_STIG_RHEL_08_030020: true
+DISA_STIG_RHEL_08_030070: true
 DISA_STIG_RHEL_08_030121: true
 DISA_STIG_RHEL_08_030130: true
 DISA_STIG_RHEL_08_030140: true
@@ -159,11 +161,13 @@ file_owner_grub2_cfg: true
 file_permissions_etc_group: true
 file_permissions_etc_passwd: true
 file_permissions_etc_shadow: true
+file_permissions_var_log_audit: true
 force_opensc_card_drivers: true
 grub2_audit_argument: true
 high_complexity: true
 high_disruption: true
 high_severity: true
+logind_session_timeout: true
 low_complexity: true
 low_disruption: true
 low_severity: true
