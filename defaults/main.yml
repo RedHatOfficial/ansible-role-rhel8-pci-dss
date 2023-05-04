@@ -11,7 +11,6 @@ var_password_pam_lcredit: '-1'
 var_password_pam_minlen: '7'
 var_password_pam_ucredit: '-1'
 var_password_hashing_algorithm: SHA512
-var_logind_session_timeout: '900'
 var_smartcard_drivers: cac
 var_account_disable_post_pw_expiration: '90'
 var_accounts_maximum_age_login_defs: '90'
@@ -167,7 +166,6 @@ grub2_audit_argument: true
 high_complexity: true
 high_disruption: true
 high_severity: true
-logind_session_timeout: true
 low_complexity: true
 low_disruption: true
 low_severity: true
@@ -186,6 +184,8 @@ reboot_required: true
 restrict_strategy: true
 rpm_verify_hashes: true
 rpm_verify_permissions: true
+rsyslog_files_groupownership: true
+rsyslog_files_ownership: true
 rsyslog_files_permissions: true
 security_patches_up_to_date: true
 service_auditd_enabled: true
