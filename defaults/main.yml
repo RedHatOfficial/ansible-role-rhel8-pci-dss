@@ -23,6 +23,7 @@ var_auditd_space_left_action: email
 var_multiple_time_servers: 0.rhel.pool.ntp.org,1.rhel.pool.ntp.org,2.rhel.pool.ntp.org,3.rhel.pool.ntp.org
 sshd_idle_timeout_value: '900'
 DISA_STIG_RHEL_08_010010: true
+DISA_STIG_RHEL_08_010019: true
 DISA_STIG_RHEL_08_010020: true
 DISA_STIG_RHEL_08_010110: true
 DISA_STIG_RHEL_08_010159: true
@@ -34,7 +35,7 @@ DISA_STIG_RHEL_08_010359: true
 DISA_STIG_RHEL_08_010370: true
 DISA_STIG_RHEL_08_010410: true
 DISA_STIG_RHEL_08_020011: true
-DISA_STIG_RHEL_08_020016: true
+DISA_STIG_RHEL_08_020015: true
 DISA_STIG_RHEL_08_020030: true
 DISA_STIG_RHEL_08_020060: true
 DISA_STIG_RHEL_08_020081: true
@@ -136,6 +137,7 @@ configure_opensc_card_drivers: true
 configure_openssl_crypto_policy: true
 configure_ssh_crypto_policy: true
 configure_strategy: true
+dconf_db_up_to_date: true
 dconf_gnome_screensaver_idle_activation_enabled: true
 dconf_gnome_screensaver_idle_delay: true
 dconf_gnome_screensaver_lock_enabled: true
