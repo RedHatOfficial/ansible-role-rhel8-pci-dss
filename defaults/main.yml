@@ -42,6 +42,8 @@ var_sshd_set_login_grace_time: '60'
 sshd_max_auth_tries_value: '4'
 var_sshd_max_sessions: '10'
 var_sshd_set_maxstartups: 10:30:100
+sshd_approved_ciphers: aes128-ctr,aes192-ctr,aes256-ctr,aes128-cbc,3des-cbc,aes192-cbc,aes256-cbc,rijndael-cbc@lysator.liu.se
+sshd_strong_kex: ecdh-sha2-nistp256,ecdh-sha2-nistp384,ecdh-sha2-nistp521,diffie-hellman-group-exchange-sha256,diffie-hellman-group16-sha512,diffie-hellman-group18-sha512,diffie-hellman-group14-sha256
 DISA_STIG_RHEL_08_010010: true
 DISA_STIG_RHEL_08_010019: true
 DISA_STIG_RHEL_08_010020: true
@@ -268,6 +270,8 @@ file_permissions_sshd_private_key: true
 file_permissions_sshd_pub_key: true
 file_permissions_user_cfg: true
 file_permissions_var_log_audit: true
+firewalld_loopback_traffic_restricted: true
+firewalld_loopback_traffic_trusted: true
 gnome_gdm_disable_automatic_login: true
 gnome_gdm_disable_guest_login: true
 grub2_audit_argument: true
@@ -297,6 +301,7 @@ package_audispd_plugins_installed: true
 package_audit_installed: true
 package_chrony_installed: true
 package_dhcp_removed: true
+package_ftp_removed: true
 package_libselinux_installed: true
 package_logrotate_installed: true
 package_net_snmp_removed: true
@@ -347,6 +352,8 @@ sshd_set_loglevel_verbose: true
 sshd_set_max_auth_tries: true
 sshd_set_max_sessions: true
 sshd_set_maxstartups: true
+sshd_use_approved_ciphers: true
+sshd_use_strong_kex: true
 sudo_add_use_pty: true
 sudo_custom_logfile: true
 sudo_require_authentication: true
