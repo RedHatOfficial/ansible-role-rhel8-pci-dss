@@ -5,7 +5,7 @@ inactivity_timeout_value: '900'
 var_screensaver_lock_delay: '10'
 var_sudo_logfile: /var/log/sudo.log
 var_sudo_timestamp_timeout: '5'
-var_authselect_profile: minimal
+var_authselect_profile: sssd
 var_password_pam_remember: '4'
 var_password_pam_remember_control_flag: requisite,required
 var_password_pam_unix_remember: '4'
