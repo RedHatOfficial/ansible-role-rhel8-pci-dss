@@ -80,8 +80,6 @@ DISA_STIG_RHEL_08_020120: true
 DISA_STIG_RHEL_08_020130: true
 DISA_STIG_RHEL_08_020200: true
 DISA_STIG_RHEL_08_020210: true
-DISA_STIG_RHEL_08_020220: true
-DISA_STIG_RHEL_08_020221: true
 DISA_STIG_RHEL_08_020230: true
 DISA_STIG_RHEL_08_020260: true
 DISA_STIG_RHEL_08_020330: true
@@ -301,6 +299,7 @@ package_aide_installed: true
 package_audispd_plugins_installed: true
 package_audit_installed: true
 package_chrony_installed: true
+package_cron_installed: true
 package_dhcp_removed: true
 package_firewalld_installed: true
 package_ftp_removed: true
