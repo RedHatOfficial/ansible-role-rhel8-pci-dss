@@ -56,7 +56,6 @@ DISA_STIG_RHEL_08_010200: true
 DISA_STIG_RHEL_08_010201: true
 DISA_STIG_RHEL_08_010287: true
 DISA_STIG_RHEL_08_010359: true
-DISA_STIG_RHEL_08_010370: true
 DISA_STIG_RHEL_08_010384: true
 DISA_STIG_RHEL_08_010430: true
 DISA_STIG_RHEL_08_010450: true
@@ -124,6 +123,7 @@ DISA_STIG_RHEL_08_040270: true
 DISA_STIG_RHEL_08_040285: true
 DISA_STIG_RHEL_08_040330: true
 DISA_STIG_RHEL_08_040340: true
+DISA_STIG_needed_rules: true
 account_disable_post_pw_expiration: true
 accounts_maximum_age_login_defs: true
 accounts_no_uid_except_zero: true
@@ -338,6 +338,7 @@ service_rsyncd_disabled: true
 set_password_hashing_algorithm_libuserconf: true
 set_password_hashing_algorithm_logindefs: true
 set_password_hashing_algorithm_systemauth: true
+special_service_block: true
 sshd_disable_empty_passwords: true
 sshd_disable_rhosts: true
 sshd_disable_root_login: true
