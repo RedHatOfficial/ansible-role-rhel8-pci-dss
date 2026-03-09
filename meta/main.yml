@@ -29,4 +29,8 @@ galaxy_info:
   - pcidss
 
 
+collections:
+  - community.general
+  - ansible.posix
+
 dependencies: []
