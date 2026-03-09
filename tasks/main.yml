@@ -60,7 +60,7 @@
   - no_reboot_needed
   - restrict_strategy
 
-- name: Ensure AIDE is installed
+- name: Configure Periodic Execution of AIDE - Ensure AIDE is installed
   ansible.builtin.package:
     name: aide
     state: present
@@ -87,7 +87,7 @@
   - no_reboot_needed
   - restrict_strategy
 
-- name: Install cron
+- name: Configure Periodic Execution of AIDE - Install cron
   ansible.builtin.package:
     name: cronie
     state: present
@@ -288,7 +288,7 @@
   - no_reboot_needed
   - package_nftables_installed
 
-- name: Ensure NetworkManager is installed
+- name: Deactivate Wireless Network Interfaces - Ensure NetworkManager is installed
   ansible.builtin.package:
     name: '{{ item }}'
     state: present
@@ -1360,7 +1360,7 @@
   - no_reboot_needed
   - restrict_strategy
 
-- name: Configure Periodic Execution of AIDE
+- name: Configure Periodic Execution of AIDE - Setup Cron Tab
   ansible.builtin.cron:
     name: run AIDE check
     minute: 5
@@ -1401,7 +1401,11 @@
   tags:
   - CCE-80935-0
   - DISA-STIG-RHEL-08-010020
-  - DISA-STIG-needed_rules
+  - DISA-STIG-RHEL-08-010270
+  - DISA-STIG-RHEL-08-010290
+  - DISA-STIG-RHEL-08-010291
+  - DISA-STIG-RHEL-08-010296
+  - DISA-STIG-RHEL-08-010297
   - NIST-800-53-AC-17(2)
   - NIST-800-53-AC-17(a)
   - NIST-800-53-CM-6(a)
@@ -1419,7 +1423,11 @@
   - restrict_strategy
   when:
   - DISA_STIG_RHEL_08_010020 | bool
-  - DISA_STIG_needed_rules | bool
+  - DISA_STIG_RHEL_08_010270 | bool
+  - DISA_STIG_RHEL_08_010290 | bool
+  - DISA_STIG_RHEL_08_010291 | bool
+  - DISA_STIG_RHEL_08_010296 | bool
+  - DISA_STIG_RHEL_08_010297 | bool
   - configure_crypto_policy | bool
   - high_severity | bool
   - low_complexity | bool
@@ -1437,7 +1445,11 @@
   tags:
   - CCE-80935-0
   - DISA-STIG-RHEL-08-010020
-  - DISA-STIG-needed_rules
+  - DISA-STIG-RHEL-08-010270
+  - DISA-STIG-RHEL-08-010290
+  - DISA-STIG-RHEL-08-010291
+  - DISA-STIG-RHEL-08-010296
+  - DISA-STIG-RHEL-08-010297
   - NIST-800-53-AC-17(2)
   - NIST-800-53-AC-17(a)
   - NIST-800-53-CM-6(a)
@@ -1455,7 +1467,11 @@
   - restrict_strategy
   when:
   - DISA_STIG_RHEL_08_010020 | bool
-  - DISA_STIG_needed_rules | bool
+  - DISA_STIG_RHEL_08_010270 | bool
+  - DISA_STIG_RHEL_08_010290 | bool
+  - DISA_STIG_RHEL_08_010291 | bool
+  - DISA_STIG_RHEL_08_010296 | bool
+  - DISA_STIG_RHEL_08_010297 | bool
   - configure_crypto_policy | bool
   - high_severity | bool
   - low_complexity | bool
@@ -1473,7 +1489,11 @@
   tags:
   - CCE-80935-0
   - DISA-STIG-RHEL-08-010020
-  - DISA-STIG-needed_rules
+  - DISA-STIG-RHEL-08-010270
+  - DISA-STIG-RHEL-08-010290
+  - DISA-STIG-RHEL-08-010291
+  - DISA-STIG-RHEL-08-010296
+  - DISA-STIG-RHEL-08-010297
   - NIST-800-53-AC-17(2)
   - NIST-800-53-AC-17(a)
   - NIST-800-53-CM-6(a)
@@ -1491,7 +1511,11 @@
   - restrict_strategy
   when:
   - DISA_STIG_RHEL_08_010020 | bool
-  - DISA_STIG_needed_rules | bool
+  - DISA_STIG_RHEL_08_010270 | bool
+  - DISA_STIG_RHEL_08_010290 | bool
+  - DISA_STIG_RHEL_08_010291 | bool
+  - DISA_STIG_RHEL_08_010296 | bool
+  - DISA_STIG_RHEL_08_010297 | bool
   - configure_crypto_policy | bool
   - high_severity | bool
   - low_complexity | bool
@@ -1509,7 +1533,11 @@
   tags:
   - CCE-80935-0
   - DISA-STIG-RHEL-08-010020
-  - DISA-STIG-needed_rules
+  - DISA-STIG-RHEL-08-010270
+  - DISA-STIG-RHEL-08-010290
+  - DISA-STIG-RHEL-08-010291
+  - DISA-STIG-RHEL-08-010296
+  - DISA-STIG-RHEL-08-010297
   - NIST-800-53-AC-17(2)
   - NIST-800-53-AC-17(a)
   - NIST-800-53-CM-6(a)
@@ -1527,7 +1555,11 @@
   - restrict_strategy
   when:
   - DISA_STIG_RHEL_08_010020 | bool
-  - DISA_STIG_needed_rules | bool
+  - DISA_STIG_RHEL_08_010270 | bool
+  - DISA_STIG_RHEL_08_010290 | bool
+  - DISA_STIG_RHEL_08_010291 | bool
+  - DISA_STIG_RHEL_08_010296 | bool
+  - DISA_STIG_RHEL_08_010297 | bool
   - configure_crypto_policy | bool
   - high_severity | bool
   - low_complexity | bool
@@ -1539,7 +1571,11 @@
   ansible.builtin.command: /usr/bin/update-crypto-policies --set {{ var_system_crypto_policy }}
   when:
   - DISA_STIG_RHEL_08_010020 | bool
-  - DISA_STIG_needed_rules | bool
+  - DISA_STIG_RHEL_08_010270 | bool
+  - DISA_STIG_RHEL_08_010290 | bool
+  - DISA_STIG_RHEL_08_010291 | bool
+  - DISA_STIG_RHEL_08_010296 | bool
+  - DISA_STIG_RHEL_08_010297 | bool
   - configure_crypto_policy | bool
   - high_severity | bool
   - low_complexity | bool
@@ -1551,7 +1587,11 @@
   tags:
   - CCE-80935-0
   - DISA-STIG-RHEL-08-010020
-  - DISA-STIG-needed_rules
+  - DISA-STIG-RHEL-08-010270
+  - DISA-STIG-RHEL-08-010290
+  - DISA-STIG-RHEL-08-010291
+  - DISA-STIG-RHEL-08-010296
+  - DISA-STIG-RHEL-08-010297
   - NIST-800-53-AC-17(2)
   - NIST-800-53-AC-17(a)
   - NIST-800-53-CM-6(a)
@@ -1574,7 +1614,6 @@
     state: absent
     regexp: (?i)^\s*CRYPTO_POLICY.*$
   when:
-  - DISA_STIG_RHEL_08_010287 | bool
   - configure_ssh_crypto_policy | bool
   - disable_strategy | bool
   - low_complexity | bool
@@ -1584,7 +1623,6 @@
   - '"kernel-core" in ansible_facts.packages'
   tags:
   - CCE-80939-2
-  - DISA-STIG-RHEL-08-010287
   - NIST-800-53-AC-17(2)
   - NIST-800-53-AC-17(a)
   - NIST-800-53-CM-6(a)
@@ -3079,7 +3117,7 @@
   - medium_disruption
   - no_reboot_needed
 
-- name: Read permission of GPG key directory
+- name: 'Ensure Red Hat GPG Key Installed: Read permission of GPG key directory'
   ansible.builtin.stat:
     path: /etc/pki/rpm-gpg/
   register: gpg_key_directory_permission
@@ -3112,7 +3150,7 @@
   - no_reboot_needed | bool
   - restrict_strategy | bool
 
-- name: Read signatures in GPG key
+- name: 'Ensure Red Hat GPG Key Installed: Read signatures in GPG key'
   ansible.builtin.command: gpg --show-keys --with-fingerprint --with-colons "/etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release"
   changed_when: false
   register: gpg_fingerprints
@@ -3146,11 +3184,10 @@
   - no_reboot_needed | bool
   - restrict_strategy | bool
 
-- name: Set Fact - Installed GPG Fingerprints
+- name: 'Ensure Red Hat GPG Key Installed: Set Fact - Installed GPG Fingerprints'
   ansible.builtin.set_fact:
-    gpg_installed_fingerprints: '{{ gpg_fingerprints.stdout | regex_findall(''^pub.*
-
-      (?:^fpr[:]*)([0-9A-Fa-f]*)'', ''\1'') | list }}'
+    gpg_installed_fingerprints: '{{ gpg_fingerprints.stdout | regex_findall(''^pub.*\n(?:^fpr[:]*)([0-9A-Fa-f]*)'', ''\1'')
+      | list }}'
   tags:
   - CCE-80795-8
   - CJIS-5.10.4.1
@@ -3179,7 +3216,7 @@
   - no_reboot_needed | bool
   - restrict_strategy | bool
 
-- name: Set Fact - Valid fingerprints
+- name: 'Ensure Red Hat GPG Key Installed: Set Fact - Valid fingerprints'
   ansible.builtin.set_fact:
     gpg_valid_fingerprints:
     - 567E347AD0044ADE55BA8A5F199E2F91FD431D51
@@ -3212,10 +3249,8 @@
   - no_reboot_needed | bool
   - restrict_strategy | bool
 
-- name: Import RedHat GPG key
-  ansible.builtin.rpm_key:
-    state: present
-    key: /etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
+- name: 'Ensure Red Hat GPG Key Installed: Import RedHat GPG key'
+  ansible.builtin.command: rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
   when:
   - DISA_STIG_RHEL_08_010019 | bool
   - ensure_redhat_gpgkey_installed | bool
@@ -3576,7 +3611,6 @@
     path: /usr/bin/authselect
   register: result_authselect_present
   when:
-  - DISA_STIG_RHEL_08_020340 | bool
   - configure_strategy | bool
   - display_login_attempts | bool
   - low_complexity | bool
@@ -3587,7 +3621,6 @@
   tags:
   - CCE-80788-3
   - CJIS-5.5.2
-  - DISA-STIG-RHEL-08-020340
   - NIST-800-53-AC-9
   - NIST-800-53-AC-9(1)
   - PCI-DSS-Req-10.2.4
@@ -3608,7 +3641,6 @@
   changed_when: false
   check_mode: false
   when:
-  - DISA_STIG_RHEL_08_020340 | bool
   - configure_strategy | bool
   - display_login_attempts | bool
   - low_complexity | bool
@@ -3620,7 +3652,6 @@
   tags:
   - CCE-80788-3
   - CJIS-5.5.2
-  - DISA-STIG-RHEL-08-020340
   - NIST-800-53-AC-9
   - NIST-800-53-AC-9(1)
   - PCI-DSS-Req-10.2.4
@@ -3679,7 +3710,6 @@
     - result_authselect_disable_feature_cmd is not skipped
     - result_authselect_disable_feature_cmd is success
   when:
-  - DISA_STIG_RHEL_08_020340 | bool
   - configure_strategy | bool
   - display_login_attempts | bool
   - low_complexity | bool
@@ -3692,7 +3722,6 @@
   tags:
   - CCE-80788-3
   - CJIS-5.5.2
-  - DISA-STIG-RHEL-08-020340
   - NIST-800-53-AC-9
   - NIST-800-53-AC-9(1)
   - PCI-DSS-Req-10.2.4
@@ -3928,9 +3957,9 @@
       regexp: (.*session.*{{ pam_module_control | regex_escape() }}.*pam_lastlog.so.*)\bsilent\b=?[0-9a-zA-Z]*(.*)
       replace: \1\2
     register: result_pam_option_removal
-    when: result_pam_file_present.stat.exists
+    when:
+    - result_pam_file_present.stat.exists
   when:
-  - DISA_STIG_RHEL_08_020340 | bool
   - configure_strategy | bool
   - display_login_attempts | bool
   - low_complexity | bool
@@ -3941,7 +3970,6 @@
   tags:
   - CCE-80788-3
   - CJIS-5.5.2
-  - DISA-STIG-RHEL-08-020340
   - NIST-800-53-AC-9
   - NIST-800-53-AC-9(1)
   - PCI-DSS-Req-10.2.4
@@ -4331,7 +4359,7 @@
     - name: 'Limit Password Reuse: password-auth - Check if /etc/pam.d/password-auth file is present'
       ansible.builtin.stat:
         path: /etc/pam.d/password-auth
-      register: result_pam_file_present
+      register: result_pam_password_auth_file_present
     - name: 'Limit Password Reuse: password-auth - Check the proper remediation for the system'
       block:
       - name: 'Limit Password Reuse: password-auth - Define the PAM file to be edited as a local fact'
@@ -4472,7 +4500,8 @@
           regexp: (.*password.*pam_pwhistory.so.*)\bremember\b=?[0-9a-zA-Z]*(.*)
           replace: \1\2
         register: result_pam_option_removal
-        when: result_pam_file_present.stat.exists
+        when:
+        - result_pam_file_present.stat.exists
       - name: 'Limit Password Reuse: password-auth - Ensure authselect changes are applied'
         ansible.builtin.command:
           cmd: authselect apply-changes -b
@@ -4480,7 +4509,7 @@
         - result_authselect_present.stat.exists
         - result_pam_option_removal is changed
       when:
-      - result_pam_file_present.stat.exists
+      - result_pam_password_auth_file_present.stat.exists
   when:
   - accounts_password_pam_pwhistory_remember_password_auth | bool
   - configure_strategy | bool
@@ -5121,7 +5150,7 @@
     - name: 'Limit Password Reuse: system-auth - Check if /etc/pam.d/system-auth file is present'
       ansible.builtin.stat:
         path: /etc/pam.d/system-auth
-      register: result_pam_file_present
+      register: result_pam_auth_file_present
     - name: 'Limit Password Reuse: system-auth - Check the proper remediation for the system'
       block:
       - name: 'Limit Password Reuse: system-auth - Define the PAM file to be edited as a local fact'
@@ -5261,7 +5290,8 @@
           regexp: (.*password.*pam_pwhistory.so.*)\bremember\b=?[0-9a-zA-Z]*(.*)
           replace: \1\2
         register: result_pam_option_removal
-        when: result_pam_file_present.stat.exists
+        when:
+        - result_pam_file_present.stat.exists
       - name: 'Limit Password Reuse: system-auth - Ensure authselect changes are applied'
         ansible.builtin.command:
           cmd: authselect apply-changes -b
@@ -5269,7 +5299,7 @@
         - result_authselect_present.stat.exists
         - result_pam_option_removal is changed
       when:
-      - result_pam_file_present.stat.exists
+      - result_pam_auth_file_present.stat.exists
   when:
   - accounts_password_pam_pwhistory_remember_system_auth | bool
   - configure_strategy | bool
@@ -5908,7 +5938,7 @@
     - name: Limit Password Reuse - Check if /etc/pam.d/system-auth file is present
       ansible.builtin.stat:
         path: /etc/pam.d/system-auth
-      register: result_pam_file_present
+      register: result_pam_auth_file_present
     - name: Limit Password Reuse - Check the proper remediation for the system
       block:
       - name: Limit Password Reuse - Define the PAM file to be edited as a local fact
@@ -6048,7 +6078,8 @@
           regexp: (.*password.*pam_pwhistory.so.*)\bremember\b=?[0-9a-zA-Z]*(.*)
           replace: \1\2
         register: result_pam_option_removal
-        when: result_pam_file_present.stat.exists
+        when:
+        - result_pam_file_present.stat.exists
       - name: Limit Password Reuse - Ensure authselect changes are applied
         ansible.builtin.command:
           cmd: authselect apply-changes -b
@@ -6056,7 +6087,7 @@
         - result_authselect_present.stat.exists
         - result_pam_option_removal is changed
       when:
-      - result_pam_file_present.stat.exists
+      - result_pam_auth_file_present.stat.exists
   when:
   - accounts_password_pam_unix_remember | bool
   - configure_strategy | bool
@@ -6561,7 +6592,7 @@
   - name: Lock Accounts After Failed Password Attempts - Check if /etc/pam.d/system-auth file is present
     ansible.builtin.stat:
       path: /etc/pam.d/system-auth
-    register: result_pam_file_present
+    register: result_pam_auth_file_present
   - name: Lock Accounts After Failed Password Attempts - Check the proper remediation for the system
     block:
     - name: Lock Accounts After Failed Password Attempts - Define the PAM file to be edited as a local fact
@@ -6704,7 +6735,8 @@
         regexp: (.*auth.*pam_faillock.so.*)\bdeny\b=?[0-9a-zA-Z]*(.*)
         replace: \1\2
       register: result_pam_option_removal
-      when: result_pam_file_present.stat.exists
+      when:
+      - result_pam_file_present.stat.exists
     - name: Lock Accounts After Failed Password Attempts - Ensure authselect changes are applied
       ansible.builtin.command:
         cmd: authselect apply-changes -b
@@ -6712,11 +6744,11 @@
       - result_authselect_present.stat.exists
       - result_pam_option_removal is changed
     when:
-    - result_pam_file_present.stat.exists
+    - result_pam_auth_file_present.stat.exists
   - name: Lock Accounts After Failed Password Attempts - Check if /etc/pam.d/password-auth file is present
     ansible.builtin.stat:
       path: /etc/pam.d/password-auth
-    register: result_pam_file_present
+    register: result_pam_password_auth_file_present
   - name: Lock Accounts After Failed Password Attempts - Check the proper remediation for the system
     block:
     - name: Lock Accounts After Failed Password Attempts - Define the PAM file to be edited as a local fact
@@ -6859,7 +6891,8 @@
         regexp: (.*auth.*pam_faillock.so.*)\bdeny\b=?[0-9a-zA-Z]*(.*)
         replace: \1\2
       register: result_pam_option_removal
-      when: result_pam_file_present.stat.exists
+      when:
+      - result_pam_file_present.stat.exists
     - name: Lock Accounts After Failed Password Attempts - Ensure authselect changes are applied
       ansible.builtin.command:
         cmd: authselect apply-changes -b
@@ -6867,7 +6900,7 @@
       - result_authselect_present.stat.exists
       - result_pam_option_removal is changed
     when:
-    - result_pam_file_present.stat.exists
+    - result_pam_password_auth_file_present.stat.exists
   when:
   - DISA_STIG_RHEL_08_020011 | bool
   - accounts_passwords_pam_faillock_deny | bool
@@ -7239,7 +7272,7 @@
   - name: Set Lockout Time for Failed Password Attempts - Check if /etc/pam.d/system-auth file is present
     ansible.builtin.stat:
       path: /etc/pam.d/system-auth
-    register: result_pam_file_present
+    register: result_pam_auth_file_present
   - name: Set Lockout Time for Failed Password Attempts - Check the proper remediation for the system
     block:
     - name: Set Lockout Time for Failed Password Attempts - Define the PAM file to be edited as a local fact
@@ -7383,7 +7416,8 @@
         regexp: (.*auth.*pam_faillock.so.*)\bunlock_time\b=?[0-9a-zA-Z]*(.*)
         replace: \1\2
       register: result_pam_option_removal
-      when: result_pam_file_present.stat.exists
+      when:
+      - result_pam_file_present.stat.exists
     - name: Set Lockout Time for Failed Password Attempts - Ensure authselect changes are applied
       ansible.builtin.command:
         cmd: authselect apply-changes -b
@@ -7391,11 +7425,11 @@
       - result_authselect_present.stat.exists
       - result_pam_option_removal is changed
     when:
-    - result_pam_file_present.stat.exists
+    - result_pam_auth_file_present.stat.exists
   - name: Set Lockout Time for Failed Password Attempts - Check if /etc/pam.d/password-auth file is present
     ansible.builtin.stat:
       path: /etc/pam.d/password-auth
-    register: result_pam_file_present
+    register: result_pam_password_auth_file_present
   - name: Set Lockout Time for Failed Password Attempts - Check the proper remediation for the system
     block:
     - name: Set Lockout Time for Failed Password Attempts - Define the PAM file to be edited as a local fact
@@ -7539,7 +7573,8 @@
         regexp: (.*auth.*pam_faillock.so.*)\bunlock_time\b=?[0-9a-zA-Z]*(.*)
         replace: \1\2
       register: result_pam_option_removal
-      when: result_pam_file_present.stat.exists
+      when:
+      - result_pam_file_present.stat.exists
     - name: Set Lockout Time for Failed Password Attempts - Ensure authselect changes are applied
       ansible.builtin.command:
         cmd: authselect apply-changes -b
@@ -7547,7 +7582,7 @@
       - result_authselect_present.stat.exists
       - result_pam_option_removal is changed
     when:
-    - result_pam_file_present.stat.exists
+    - result_pam_password_auth_file_present.stat.exists
   when:
   - DISA_STIG_RHEL_08_020014 | bool
   - DISA_STIG_RHEL_08_020015 | bool
@@ -8037,10 +8072,10 @@
   - restrict_strategy
   - set_password_hashing_algorithm_logindefs
 
-- name: Set PAM's Password Hashing Algorithm - Check if /etc/pam.d/system-auth file is present
+- name: Set PAM Password Hashing Algorithm - system-auth - Check if /etc/pam.d/system-auth file is present
   ansible.builtin.stat:
     path: /etc/pam.d/system-auth
-  register: result_pam_file_present
+  register: result_pam_auth_file_present
   when:
   - DISA_STIG_RHEL_08_010159 | bool
   - configure_strategy | bool
@@ -8069,25 +8104,26 @@
   - no_reboot_needed
   - set_password_hashing_algorithm_systemauth
 
-- name: Set PAM's Password Hashing Algorithm - Check the proper remediation for the system
+- name: Set PAM Password Hashing Algorithm - system-auth - Check the proper remediation for the system
   block:
-  - name: Set PAM's Password Hashing Algorithm - Define the PAM file to be edited as a local fact
+  - name: Set PAM Password Hashing Algorithm - system-auth - Define the PAM file to be edited as a local fact
     ansible.builtin.set_fact:
       pam_file_path: /etc/pam.d/system-auth
-  - name: Set PAM's Password Hashing Algorithm - Check if system relies on authselect tool
+  - name: Set PAM Password Hashing Algorithm - system-auth - Check if system relies on authselect tool
     ansible.builtin.stat:
       path: /usr/bin/authselect
     register: result_authselect_present
-  - name: Set PAM's Password Hashing Algorithm - Ensure authselect custom profile is used if authselect is present
+  - name: Set PAM Password Hashing Algorithm - system-auth - Ensure authselect custom profile is used if authselect is present
     block:
-    - name: Set PAM's Password Hashing Algorithm - Check integrity of authselect current profile
+    - name: Set PAM Password Hashing Algorithm - system-auth - Check integrity of authselect current profile
       ansible.builtin.command:
         cmd: authselect check
       register: result_authselect_check_cmd
       changed_when: false
       check_mode: false
       failed_when: false
-    - name: Set PAM's Password Hashing Algorithm - Informative message based on the authselect integrity check result
+    - name: Set PAM Password Hashing Algorithm - system-auth - Informative message based on the authselect integrity check
+        result
       ansible.builtin.assert:
         that:
         - ansible_check_mode or result_authselect_check_cmd.rc == 0
@@ -8099,28 +8135,29 @@
         - In cases where the default authselect profile does not cover a specific demand, a custom authselect profile is recommended.
         success_msg:
         - authselect integrity check passed
-    - name: Set PAM's Password Hashing Algorithm - Get authselect current profile
+    - name: Set PAM Password Hashing Algorithm - system-auth - Get authselect current profile
       ansible.builtin.shell:
         cmd: authselect current -r | awk '{ print $1 }'
       register: result_authselect_profile
       changed_when: false
       when:
       - result_authselect_check_cmd is success
-    - name: Set PAM's Password Hashing Algorithm - Define the current authselect profile as a local fact
+    - name: Set PAM Password Hashing Algorithm - system-auth - Define the current authselect profile as a local fact
       ansible.builtin.set_fact:
         authselect_current_profile: '{{ result_authselect_profile.stdout }}'
         authselect_custom_profile: '{{ result_authselect_profile.stdout }}'
       when:
       - result_authselect_profile is not skipped
       - result_authselect_profile.stdout is match("custom/")
-    - name: Set PAM's Password Hashing Algorithm - Define the new authselect custom profile as a local fact
+    - name: Set PAM Password Hashing Algorithm - system-auth - Define the new authselect custom profile as a local fact
       ansible.builtin.set_fact:
         authselect_current_profile: '{{ result_authselect_profile.stdout }}'
         authselect_custom_profile: custom/hardening
       when:
       - result_authselect_profile is not skipped
       - result_authselect_profile.stdout is not match("custom/")
-    - name: Set PAM's Password Hashing Algorithm - Get authselect current features to also enable them in the custom profile
+    - name: Set PAM Password Hashing Algorithm - system-auth - Get authselect current features to also enable them in the
+        custom profile
       ansible.builtin.shell:
         cmd: authselect current | tail -n+3 | awk '{ print $2 }'
       register: result_authselect_features
@@ -8129,7 +8166,8 @@
       when:
       - result_authselect_profile is not skipped
       - authselect_current_profile is not match("custom/")
-    - name: Set PAM's Password Hashing Algorithm - Check if any custom profile with the same name was already created
+    - name: Set PAM Password Hashing Algorithm - system-auth - Check if any custom profile with the same name was already
+        created
       ansible.builtin.stat:
         path: /etc/authselect/{{ authselect_custom_profile }}
       register: result_authselect_custom_profile_present
@@ -8137,7 +8175,7 @@
       when:
       - result_authselect_profile is not skipped
       - authselect_current_profile is not match("custom/")
-    - name: Set PAM's Password Hashing Algorithm - Create an authselect custom profile based on the current profile
+    - name: Set PAM Password Hashing Algorithm - system-auth - Create an authselect custom profile based on the current profile
       ansible.builtin.command:
         cmd: authselect create-profile hardening -b {{ authselect_current_profile }}
       when:
@@ -8145,7 +8183,7 @@
       - result_authselect_check_cmd is success
       - authselect_current_profile is not match("^(custom/|local)")
       - not result_authselect_custom_profile_present.stat.exists
-    - name: Set PAM's Password Hashing Algorithm - Create an authselect custom profile based on sssd profile
+    - name: Set PAM Password Hashing Algorithm - system-auth - Create an authselect custom profile based on sssd profile
       ansible.builtin.command:
         cmd: authselect create-profile hardening -b sssd
       when:
@@ -8153,7 +8191,7 @@
       - result_authselect_check_cmd is success
       - authselect_current_profile is match("local")
       - not result_authselect_custom_profile_present.stat.exists
-    - name: Set PAM's Password Hashing Algorithm - Ensure authselect changes are applied
+    - name: Set PAM Password Hashing Algorithm - system-auth - Ensure authselect changes are applied
       ansible.builtin.command:
         cmd: authselect apply-changes -b --backup=before-hardening-custom-profile
       when:
@@ -8161,7 +8199,7 @@
       - result_authselect_profile is not skipped
       - authselect_current_profile is not match("custom/")
       - authselect_custom_profile is not match(authselect_current_profile)
-    - name: Set PAM's Password Hashing Algorithm - Ensure the authselect custom profile is selected
+    - name: Set PAM Password Hashing Algorithm - system-auth - Ensure the authselect custom profile is selected
       ansible.builtin.command:
         cmd: authselect select {{ authselect_custom_profile }}
       register: result_pam_authselect_select_profile
@@ -8170,7 +8208,7 @@
       - result_authselect_profile is not skipped
       - authselect_current_profile is not match("custom/")
       - authselect_custom_profile is not match(authselect_current_profile)
-    - name: Set PAM's Password Hashing Algorithm - Restore the authselect features in the custom profile
+    - name: Set PAM Password Hashing Algorithm - system-auth - Restore the authselect features in the custom profile
       ansible.builtin.command:
         cmd: authselect enable-feature {{ item }}
       loop: '{{ result_authselect_features.stdout_lines }}'
@@ -8179,24 +8217,27 @@
       - result_authselect_profile is not skipped
       - result_authselect_features is not skipped
       - result_pam_authselect_select_profile is not skipped
-    - name: Set PAM's Password Hashing Algorithm - Ensure authselect changes are applied
+    - name: Set PAM Password Hashing Algorithm - system-auth - Ensure authselect changes are applied
       ansible.builtin.command:
         cmd: authselect apply-changes -b --backup=after-hardening-custom-profile
       when:
       - result_authselect_check_cmd is success
       - result_authselect_profile is not skipped
       - result_pam_authselect_restore_features is not skipped
-    - name: Set PAM's Password Hashing Algorithm - Change the PAM file to be edited according to the custom authselect profile
+    - name: Set PAM Password Hashing Algorithm - system-auth - Change the PAM file to be edited according to the custom authselect
+        profile
       ansible.builtin.set_fact:
         pam_file_path: /etc/authselect/{{ authselect_custom_profile }}/{{ pam_file_path | basename }}
       when:
       - authselect_custom_profile is defined
     when:
     - result_authselect_present.stat.exists
-  - name: Set PAM's Password Hashing Algorithm - Define a fact for control already filtered in case filters are used
+  - name: Set PAM Password Hashing Algorithm - system-auth - Define a fact for control already filtered in case filters are
+      used
     ansible.builtin.set_fact:
       pam_module_control: sufficient
-  - name: Set PAM's Password Hashing Algorithm - Check if expected PAM module line is present in {{ pam_file_path }}
+  - name: Set PAM Password Hashing Algorithm - system-auth - Check if expected PAM module line is present in {{ pam_file_path
+      }}
     ansible.builtin.lineinfile:
       path: '{{ pam_file_path }}'
       regexp: ^\s*password\s+{{ pam_module_control | regex_escape() }}\s+pam_unix.so\s*.*
@@ -8204,10 +8245,10 @@
     check_mode: true
     changed_when: false
     register: result_pam_line_present
-  - name: Set PAM's Password Hashing Algorithm - Include or update the PAM module line in {{ pam_file_path }}
+  - name: Set PAM Password Hashing Algorithm - system-auth - Include or update the PAM module line in {{ pam_file_path }}
     block:
-    - name: Set PAM's Password Hashing Algorithm - Check if required PAM module line is present in {{ pam_file_path }} with
-        different control
+    - name: Set PAM Password Hashing Algorithm - system-auth - Check if required PAM module line is present in {{ pam_file_path
+        }} with different control
       ansible.builtin.lineinfile:
         path: '{{ pam_file_path }}'
         regexp: ^\s*password\s+.*\s+pam_unix.so\s*
@@ -8215,8 +8256,8 @@
       check_mode: true
       changed_when: false
       register: result_pam_line_other_control_present
-    - name: Set PAM's Password Hashing Algorithm - Ensure the correct control for the required PAM module line in {{ pam_file_path
-        }}
+    - name: Set PAM Password Hashing Algorithm - system-auth - Ensure the correct control for the required PAM module line
+        in {{ pam_file_path }}
       ansible.builtin.replace:
         dest: '{{ pam_file_path }}'
         regexp: ^(\s*password\s+).*(\bpam_unix.so.*)
@@ -8224,14 +8265,15 @@
       register: result_pam_module_edit
       when:
       - result_pam_line_other_control_present.found == 1
-    - name: Set PAM's Password Hashing Algorithm - Ensure the required PAM module line is included in {{ pam_file_path }}
+    - name: Set PAM Password Hashing Algorithm - system-auth - Ensure the required PAM module line is included in {{ pam_file_path
+        }}
       ansible.builtin.lineinfile:
         dest: '{{ pam_file_path }}'
         line: password    {{ pam_module_control }}    pam_unix.so
       register: result_pam_module_add
       when:
       - result_pam_line_other_control_present.found == 0 or result_pam_line_other_control_present.found > 1
-    - name: Set PAM's Password Hashing Algorithm - Ensure authselect changes are applied
+    - name: Set PAM Password Hashing Algorithm - system-auth - Ensure authselect changes are applied
       ansible.builtin.command:
         cmd: authselect apply-changes -b
       when:
@@ -8242,31 +8284,33 @@
     when:
     - result_pam_line_present.found is defined
     - result_pam_line_present.found == 0
-  - name: Set PAM's Password Hashing Algorithm - Define a fact for control already filtered in case filters are used
+  - name: Set PAM Password Hashing Algorithm - system-auth - Define a fact for control already filtered in case filters are
+      used
     ansible.builtin.set_fact:
       pam_module_control: sufficient
-  - name: Set PAM's Password Hashing Algorithm - Check if the required PAM module option is present in {{ pam_file_path }}
+  - name: Set PAM Password Hashing Algorithm - system-auth - Check if the required PAM module option is present in {{ pam_file_path
+      }}
     ansible.builtin.lineinfile:
       path: '{{ pam_file_path }}'
-      regexp: ^\s*password\s+{{ pam_module_control | regex_escape() }}\s+pam_unix.so\s*.*\s{{ var_password_hashing_algorithm_pam
+      regexp: ^\s*password\s+{{ pam_module_control | regex_escape() }}\s+pam_unix.so\s*.*\s{{ var_password_hashing_algorithm_pam.split("|")[0]
         }}\b
       state: absent
     check_mode: true
     changed_when: false
     register: result_pam_module_set_password_hashing_algorithm_systemauth_option_present
-  - name: Set PAM's Password Hashing Algorithm - Ensure the "{{ var_password_hashing_algorithm_pam }}" PAM option for "pam_unix.so"
-      is included in {{ pam_file_path }}
+  - name: Set PAM Password Hashing Algorithm - system-auth - Ensure the "{{ var_password_hashing_algorithm_pam.split("|")[0]
+      }}" PAM option for "pam_unix.so" is included in {{ pam_file_path }}
     ansible.builtin.lineinfile:
       path: '{{ pam_file_path }}'
       backrefs: true
       regexp: ^(\s*password\s+{{ pam_module_control | regex_escape() }}\s+pam_unix.so.*)
-      line: \1 {{ var_password_hashing_algorithm_pam }}
+      line: \1 {{ var_password_hashing_algorithm_pam.split("|")[0] }}
       state: present
     register: result_pam_set_password_hashing_algorithm_systemauth_add
     when:
     - result_pam_module_set_password_hashing_algorithm_systemauth_option_present.found is defined
     - result_pam_module_set_password_hashing_algorithm_systemauth_option_present.found == 0
-  - name: Set PAM's Password Hashing Algorithm - Ensure authselect changes are applied
+  - name: Set PAM Password Hashing Algorithm - system-auth - Ensure authselect changes are applied
     ansible.builtin.command:
       cmd: authselect apply-changes -b
     when:
@@ -8283,7 +8327,7 @@
   - set_password_hashing_algorithm_systemauth | bool
   - '"kernel-core" in ansible_facts.packages'
   - '"pam" in ansible_facts.packages'
-  - result_pam_file_present.stat.exists
+  - result_pam_auth_file_present.stat.exists
   tags:
   - CCE-80893-1
   - CJIS-5.6.2.2
@@ -8302,10 +8346,10 @@
   - no_reboot_needed
   - set_password_hashing_algorithm_systemauth
 
-- name: Set PAM's Password Hashing Algorithm - Check if /etc/pam.d/system-auth File is Present
+- name: Set PAM Password Hashing Algorithm - system-auth - Check if /etc/pam.d/system-auth File is Present
   ansible.builtin.stat:
     path: /etc/pam.d/system-auth
-  register: result_pam_file_present
+  register: result_pam_auth_file_present
   when:
   - DISA_STIG_RHEL_08_010159 | bool
   - configure_strategy | bool
@@ -8334,25 +8378,26 @@
   - no_reboot_needed
   - set_password_hashing_algorithm_systemauth
 
-- name: Set PAM's Password Hashing Algorithm - Check The Proper Remediation For The System
+- name: Set PAM Password Hashing Algorithm - system-auth - Check The Proper Remediation For The System
   block:
-  - name: Set PAM's Password Hashing Algorithm - Define the PAM file to be edited as a local fact
+  - name: Set PAM Password Hashing Algorithm - system-auth - Define the PAM file to be edited as a local fact
     ansible.builtin.set_fact:
       pam_file_path: /etc/pam.d/system-auth
-  - name: Set PAM's Password Hashing Algorithm - Check if system relies on authselect tool
+  - name: Set PAM Password Hashing Algorithm - system-auth - Check if system relies on authselect tool
     ansible.builtin.stat:
       path: /usr/bin/authselect
     register: result_authselect_present
-  - name: Set PAM's Password Hashing Algorithm - Ensure authselect custom profile is used if authselect is present
+  - name: Set PAM Password Hashing Algorithm - system-auth - Ensure authselect custom profile is used if authselect is present
     block:
-    - name: Set PAM's Password Hashing Algorithm - Check integrity of authselect current profile
+    - name: Set PAM Password Hashing Algorithm - system-auth - Check integrity of authselect current profile
       ansible.builtin.command:
         cmd: authselect check
       register: result_authselect_check_cmd
       changed_when: false
       check_mode: false
       failed_when: false
-    - name: Set PAM's Password Hashing Algorithm - Informative message based on the authselect integrity check result
+    - name: Set PAM Password Hashing Algorithm - system-auth - Informative message based on the authselect integrity check
+        result
       ansible.builtin.assert:
         that:
         - ansible_check_mode or result_authselect_check_cmd.rc == 0
@@ -8364,28 +8409,29 @@
         - In cases where the default authselect profile does not cover a specific demand, a custom authselect profile is recommended.
         success_msg:
         - authselect integrity check passed
-    - name: Set PAM's Password Hashing Algorithm - Get authselect current profile
+    - name: Set PAM Password Hashing Algorithm - system-auth - Get authselect current profile
       ansible.builtin.shell:
         cmd: authselect current -r | awk '{ print $1 }'
       register: result_authselect_profile
       changed_when: false
       when:
       - result_authselect_check_cmd is success
-    - name: Set PAM's Password Hashing Algorithm - Define the current authselect profile as a local fact
+    - name: Set PAM Password Hashing Algorithm - system-auth - Define the current authselect profile as a local fact
       ansible.builtin.set_fact:
         authselect_current_profile: '{{ result_authselect_profile.stdout }}'
         authselect_custom_profile: '{{ result_authselect_profile.stdout }}'
       when:
       - result_authselect_profile is not skipped
       - result_authselect_profile.stdout is match("custom/")
-    - name: Set PAM's Password Hashing Algorithm - Define the new authselect custom profile as a local fact
+    - name: Set PAM Password Hashing Algorithm - system-auth - Define the new authselect custom profile as a local fact
       ansible.builtin.set_fact:
         authselect_current_profile: '{{ result_authselect_profile.stdout }}'
         authselect_custom_profile: custom/hardening
       when:
       - result_authselect_profile is not skipped
       - result_authselect_profile.stdout is not match("custom/")
-    - name: Set PAM's Password Hashing Algorithm - Get authselect current features to also enable them in the custom profile
+    - name: Set PAM Password Hashing Algorithm - system-auth - Get authselect current features to also enable them in the
+        custom profile
       ansible.builtin.shell:
         cmd: authselect current | tail -n+3 | awk '{ print $2 }'
       register: result_authselect_features
@@ -8394,7 +8440,8 @@
       when:
       - result_authselect_profile is not skipped
       - authselect_current_profile is not match("custom/")
-    - name: Set PAM's Password Hashing Algorithm - Check if any custom profile with the same name was already created
+    - name: Set PAM Password Hashing Algorithm - system-auth - Check if any custom profile with the same name was already
+        created
       ansible.builtin.stat:
         path: /etc/authselect/{{ authselect_custom_profile }}
       register: result_authselect_custom_profile_present
@@ -8402,7 +8449,7 @@
       when:
       - result_authselect_profile is not skipped
       - authselect_current_profile is not match("custom/")
-    - name: Set PAM's Password Hashing Algorithm - Create an authselect custom profile based on the current profile
+    - name: Set PAM Password Hashing Algorithm - system-auth - Create an authselect custom profile based on the current profile
       ansible.builtin.command:
         cmd: authselect create-profile hardening -b {{ authselect_current_profile }}
       when:
@@ -8410,7 +8457,7 @@
       - result_authselect_check_cmd is success
       - authselect_current_profile is not match("^(custom/|local)")
       - not result_authselect_custom_profile_present.stat.exists
-    - name: Set PAM's Password Hashing Algorithm - Create an authselect custom profile based on sssd profile
+    - name: Set PAM Password Hashing Algorithm - system-auth - Create an authselect custom profile based on sssd profile
       ansible.builtin.command:
         cmd: authselect create-profile hardening -b sssd
       when:
@@ -8418,7 +8465,7 @@
       - result_authselect_check_cmd is success
       - authselect_current_profile is match("local")
       - not result_authselect_custom_profile_present.stat.exists
-    - name: Set PAM's Password Hashing Algorithm - Ensure authselect changes are applied
+    - name: Set PAM Password Hashing Algorithm - system-auth - Ensure authselect changes are applied
       ansible.builtin.command:
         cmd: authselect apply-changes -b --backup=before-hardening-custom-profile
       when:
@@ -8426,7 +8473,7 @@
       - result_authselect_profile is not skipped
       - authselect_current_profile is not match("custom/")
       - authselect_custom_profile is not match(authselect_current_profile)
-    - name: Set PAM's Password Hashing Algorithm - Ensure the authselect custom profile is selected
+    - name: Set PAM Password Hashing Algorithm - system-auth - Ensure the authselect custom profile is selected
       ansible.builtin.command:
         cmd: authselect select {{ authselect_custom_profile }}
       register: result_pam_authselect_select_profile
@@ -8435,7 +8482,7 @@
       - result_authselect_profile is not skipped
       - authselect_current_profile is not match("custom/")
       - authselect_custom_profile is not match(authselect_current_profile)
-    - name: Set PAM's Password Hashing Algorithm - Restore the authselect features in the custom profile
+    - name: Set PAM Password Hashing Algorithm - system-auth - Restore the authselect features in the custom profile
       ansible.builtin.command:
         cmd: authselect enable-feature {{ item }}
       loop: '{{ result_authselect_features.stdout_lines }}'
@@ -8444,32 +8491,33 @@
       - result_authselect_profile is not skipped
       - result_authselect_features is not skipped
       - result_pam_authselect_select_profile is not skipped
-    - name: Set PAM's Password Hashing Algorithm - Ensure authselect changes are applied
+    - name: Set PAM Password Hashing Algorithm - system-auth - Ensure authselect changes are applied
       ansible.builtin.command:
         cmd: authselect apply-changes -b --backup=after-hardening-custom-profile
       when:
       - result_authselect_check_cmd is success
       - result_authselect_profile is not skipped
       - result_pam_authselect_restore_features is not skipped
-    - name: Set PAM's Password Hashing Algorithm - Change the PAM file to be edited according to the custom authselect profile
+    - name: Set PAM Password Hashing Algorithm - system-auth - Change the PAM file to be edited according to the custom authselect
+        profile
       ansible.builtin.set_fact:
         pam_file_path: /etc/authselect/{{ authselect_custom_profile }}/{{ pam_file_path | basename }}
       when:
       - authselect_custom_profile is defined
     when:
     - result_authselect_present.stat.exists
-  - name: Set PAM's Password Hashing Algorithm - Check if "{{ pam_file_path }}" File is Present
+  - name: Set PAM Password Hashing Algorithm - system-auth - Check if "{{ pam_file_path }}" File is Present
     ansible.builtin.stat:
       path: '{{ pam_file_path }}'
     register: pam_file_path_present
-  - name: Set PAM's Password Hashing Algorithm - Ensure That Only the Correct Hashing Algorithm Option For pam_unix.so Is
-      Used in {{ pam_file_path }}
+  - name: Set PAM Password Hashing Algorithm - system-auth - Ensure That Only the Correct Hashing Algorithm Option For pam_unix.so
+      Is Used in {{ pam_file_path }}
     ansible.builtin.replace:
       dest: '{{ pam_file_path }}'
       regexp: (^\s*password.*pam_unix\.so.*)\b{{ item }}\b\s*(.*)
       replace: \1\2
     when:
-    - item != var_password_hashing_algorithm_pam
+    - item != var_password_hashing_algorithm_pam.split('|')[0]
     - pam_file_path_present.stat.exists
     loop:
     - sha512
@@ -8480,7 +8528,7 @@
     - md5
     - bigcrypt
     register: result_pam_hashing_options_removal
-  - name: Set PAM's Password Hashing Algorithm - Ensure authselect changes are applied
+  - name: Set PAM Password Hashing Algorithm - system-auth - Ensure authselect changes are applied
     ansible.builtin.command:
       cmd: authselect apply-changes -b
     when:
@@ -8496,7 +8544,7 @@
   - set_password_hashing_algorithm_systemauth | bool
   - '"kernel-core" in ansible_facts.packages'
   - '"pam" in ansible_facts.packages'
-  - result_pam_file_present.stat.exists
+  - result_pam_auth_file_present.stat.exists
   tags:
   - CCE-80893-1
   - CJIS-5.6.2.2
@@ -9350,6 +9398,7 @@
     replace: typeset -xr TMOUT={{ var_accounts_tmout }}
   register: profile_replaced
   when:
+  - DISA_STIG_RHEL_08_020353 | bool
   - accounts_tmout | bool
   - low_complexity | bool
   - low_disruption | bool
@@ -9359,6 +9408,7 @@
   - '"kernel-core" in ansible_facts.packages'
   tags:
   - CCE-80673-7
+  - DISA-STIG-RHEL-08-020353
   - NIST-800-171-3.1.11
   - NIST-800-53-AC-12
   - NIST-800-53-AC-2(5)
@@ -9381,6 +9431,7 @@
     line: typeset -xr TMOUT={{ var_accounts_tmout }}
     state: present
   when:
+  - DISA_STIG_RHEL_08_020353 | bool
   - accounts_tmout | bool
   - low_complexity | bool
   - low_disruption | bool
@@ -9390,6 +9441,7 @@
   - '"kernel-core" in ansible_facts.packages'
   tags:
   - CCE-80673-7
+  - DISA-STIG-RHEL-08-020353
   - NIST-800-171-3.1.11
   - NIST-800-53-AC-12
   - NIST-800-53-AC-2(5)
@@ -9414,8 +9466,8 @@
   - low_disruption | bool
   - medium_severity | bool
   - no_reboot_needed | bool
-  - '"/boot/efi" not in ansible_mounts | map(attribute="mount") | list'
   - ( "grub2-common" in ansible_facts.packages and "kernel-core" in ansible_facts.packages )
+  - not ('/sys/firmware/efi' is directory)
   - not ( ansible_virtualization_type in ["docker", "lxc", "openvz", "podman", "container"] )
   tags:
   - CCE-80800-6
@@ -9444,8 +9496,8 @@
   - low_disruption | bool
   - medium_severity | bool
   - no_reboot_needed | bool
-  - '"/boot/efi" not in ansible_mounts | map(attribute="mount") | list'
   - ( "grub2-common" in ansible_facts.packages and "kernel-core" in ansible_facts.packages )
+  - not ('/sys/firmware/efi' is directory)
   - not ( ansible_virtualization_type in ["docker", "lxc", "openvz", "podman", "container"] )
   tags:
   - CCE-80800-6
@@ -9475,8 +9527,8 @@
   - low_disruption | bool
   - medium_severity | bool
   - no_reboot_needed | bool
-  - '"/boot/efi" not in ansible_mounts | map(attribute="mount") | list'
   - ( "grub2-common" in ansible_facts.packages and "kernel-core" in ansible_facts.packages )
+  - not ('/sys/firmware/efi' is directory)
   - not ( ansible_virtualization_type in ["docker", "lxc", "openvz", "podman", "container"] )
   - file_exists.stat is defined and file_exists.stat.exists
   tags:
@@ -9505,8 +9557,8 @@
   - low_disruption | bool
   - medium_severity | bool
   - no_reboot_needed | bool
-  - '"/boot/efi" not in ansible_mounts | map(attribute="mount") | list'
   - ( "grub2-common" in ansible_facts.packages and "kernel-core" in ansible_facts.packages )
+  - not ('/sys/firmware/efi' is directory)
   - not ( ansible_virtualization_type in ["docker", "lxc", "openvz", "podman", "container"] )
   tags:
   - CCE-86009-8
@@ -9535,8 +9587,8 @@
   - low_disruption | bool
   - medium_severity | bool
   - no_reboot_needed | bool
-  - '"/boot/efi" not in ansible_mounts | map(attribute="mount") | list'
   - ( "grub2-common" in ansible_facts.packages and "kernel-core" in ansible_facts.packages )
+  - not ('/sys/firmware/efi' is directory)
   - not ( ansible_virtualization_type in ["docker", "lxc", "openvz", "podman", "container"] )
   tags:
   - CCE-86009-8
@@ -9566,8 +9618,8 @@
   - low_disruption | bool
   - medium_severity | bool
   - no_reboot_needed | bool
-  - '"/boot/efi" not in ansible_mounts | map(attribute="mount") | list'
   - ( "grub2-common" in ansible_facts.packages and "kernel-core" in ansible_facts.packages )
+  - not ('/sys/firmware/efi' is directory)
   - not ( ansible_virtualization_type in ["docker", "lxc", "openvz", "podman", "container"] )
   - file_exists.stat is defined and file_exists.stat.exists
   tags:
@@ -9596,8 +9648,8 @@
   - low_disruption | bool
   - medium_severity | bool
   - no_reboot_needed | bool
-  - '"/boot/efi" not in ansible_mounts | map(attribute="mount") | list'
   - ( "grub2-common" in ansible_facts.packages and "kernel-core" in ansible_facts.packages )
+  - not ('/sys/firmware/efi' is directory)
   - not ( ansible_virtualization_type in ["docker", "lxc", "openvz", "podman", "container"] )
   tags:
   - CCE-80805-5
@@ -9626,8 +9678,8 @@
   - low_disruption | bool
   - medium_severity | bool
   - no_reboot_needed | bool
-  - '"/boot/efi" not in ansible_mounts | map(attribute="mount") | list'
   - ( "grub2-common" in ansible_facts.packages and "kernel-core" in ansible_facts.packages )
+  - not ('/sys/firmware/efi' is directory)
   - not ( ansible_virtualization_type in ["docker", "lxc", "openvz", "podman", "container"] )
   tags:
   - CCE-80805-5
@@ -9657,8 +9709,8 @@
   - low_disruption | bool
   - medium_severity | bool
   - no_reboot_needed | bool
-  - '"/boot/efi" not in ansible_mounts | map(attribute="mount") | list'
   - ( "grub2-common" in ansible_facts.packages and "kernel-core" in ansible_facts.packages )
+  - not ('/sys/firmware/efi' is directory)
   - not ( ansible_virtualization_type in ["docker", "lxc", "openvz", "podman", "container"] )
   - file_exists.stat is defined and file_exists.stat.exists
   tags:
@@ -9687,8 +9739,8 @@
   - low_disruption | bool
   - medium_severity | bool
   - no_reboot_needed | bool
-  - '"/boot/efi" not in ansible_mounts | map(attribute="mount") | list'
   - ( "grub2-common" in ansible_facts.packages and "kernel-core" in ansible_facts.packages )
+  - not ('/sys/firmware/efi' is directory)
   - not ( ansible_virtualization_type in ["docker", "lxc", "openvz", "podman", "container"] )
   tags:
   - CCE-86015-5
@@ -9717,8 +9769,8 @@
   - low_disruption | bool
   - medium_severity | bool
   - no_reboot_needed | bool
-  - '"/boot/efi" not in ansible_mounts | map(attribute="mount") | list'
   - ( "grub2-common" in ansible_facts.packages and "kernel-core" in ansible_facts.packages )
+  - not ('/sys/firmware/efi' is directory)
   - not ( ansible_virtualization_type in ["docker", "lxc", "openvz", "podman", "container"] )
   tags:
   - CCE-86015-5
@@ -9748,8 +9800,8 @@
   - low_disruption | bool
   - medium_severity | bool
   - no_reboot_needed | bool
-  - '"/boot/efi" not in ansible_mounts | map(attribute="mount") | list'
   - ( "grub2-common" in ansible_facts.packages and "kernel-core" in ansible_facts.packages )
+  - not ('/sys/firmware/efi' is directory)
   - not ( ansible_virtualization_type in ["docker", "lxc", "openvz", "podman", "container"] )
   - file_exists.stat is defined and file_exists.stat.exists
   tags:
@@ -9779,8 +9831,8 @@
   - low_disruption | bool
   - medium_severity | bool
   - no_reboot_needed | bool
-  - '"/boot/efi" not in ansible_mounts | map(attribute="mount") | list'
   - ( "grub2-common" in ansible_facts.packages and "kernel-core" in ansible_facts.packages )
+  - not ('/sys/firmware/efi' is directory)
   - not ( ansible_virtualization_type in ["docker", "lxc", "openvz", "podman", "container"] )
   tags:
   - CCE-80814-7
@@ -9807,8 +9859,8 @@
   - low_disruption | bool
   - medium_severity | bool
   - no_reboot_needed | bool
-  - '"/boot/efi" not in ansible_mounts | map(attribute="mount") | list'
   - ( "grub2-common" in ansible_facts.packages and "kernel-core" in ansible_facts.packages )
+  - not ('/sys/firmware/efi' is directory)
   - not ( ansible_virtualization_type in ["docker", "lxc", "openvz", "podman", "container"] )
   - file_exists.stat is defined and file_exists.stat.exists
   tags:
@@ -9836,8 +9888,8 @@
   - low_disruption | bool
   - medium_severity | bool
   - no_reboot_needed | bool
-  - '"/boot/efi" not in ansible_mounts | map(attribute="mount") | list'
   - ( "grub2-common" in ansible_facts.packages and "kernel-core" in ansible_facts.packages )
+  - not ('/sys/firmware/efi' is directory)
   - not ( ansible_virtualization_type in ["docker", "lxc", "openvz", "podman", "container"] )
   tags:
   - CCE-86024-7
@@ -9864,8 +9916,8 @@
   - low_disruption | bool
   - medium_severity | bool
   - no_reboot_needed | bool
-  - '"/boot/efi" not in ansible_mounts | map(attribute="mount") | list'
   - ( "grub2-common" in ansible_facts.packages and "kernel-core" in ansible_facts.packages )
+  - not ('/sys/firmware/efi' is directory)
   - not ( ansible_virtualization_type in ["docker", "lxc", "openvz", "podman", "container"] )
   - file_exists.stat is defined and file_exists.stat.exists
   tags:
@@ -10040,7 +10092,7 @@
 - name: Ensure Log Files Are Owned By Appropriate Group - Extract log files old format
   ansible.builtin.shell: 'set -o pipefail
 
-    grep -oP ''^[^(\s|#|\$)]+[\s]+.*[\s]+-?(/+[^:;\s]+);*\.*$'' {{ item.1.path }} | \
+    grep -oP ''^[^(\s|#|\$)]+[\s]*.*[\s]+-?(/+[^:;\s]+);*\.*$'' {{ item.1.path }} | \
 
     awk ''{print $NF}'' | \
 
@@ -10078,13 +10130,15 @@
 - name: Ensure Log Files Are Owned By Appropriate Group - Extract log files new format
   ansible.builtin.shell: 'set -o pipefail
 
-    grep -ozP "action\s*\(\s*type\s*=\s*\"omfile\"[^\)]*\)" {{ item.1.path }} | \
+    grep -iozP "action\s*\(\s*type\s*=\s*\"omfile\"[^\)]*\)" {{ item.1.path }} | \
 
-    grep -aoP "\bFile\s*=\s*\"([/[:alnum:][:punct:]]*)\"\s*\)" | \
+    grep -iaoP "\bFile\s*=\s*\"([/[:alnum:][:punct:]]*)\"\s*\)" | \
 
     grep -oE "\"([/[:alnum:][:punct:]]*)\"" | \
 
-    tr -d "\""|| true
+    tr -d "\"" | \
+
+    grep -v ''^/dev/'' || true
 
     '
   loop: '{{ rsyslog_config_files.results | default([]) | subelements(''files'') }}'
@@ -10332,7 +10386,7 @@
 - name: Ensure Log Files Are Owned By Appropriate User - Extract log files old format
   ansible.builtin.shell: 'set -o pipefail
 
-    grep -oP ''^[^(\s|#|\$)]+[\s]+.*[\s]+-?(/+[^:;\s]+);*\.*$'' {{ item.1.path }} | \
+    grep -oP ''^[^(\s|#|\$)]+[\s]*.*[\s]+-?(/+[^:;\s]+);*\.*$'' {{ item.1.path }} | \
 
     awk ''{print $NF}'' | \
 
@@ -10370,13 +10424,15 @@
 - name: Ensure Log Files Are Owned By Appropriate User - Extract log files new format
   ansible.builtin.shell: 'set -o pipefail
 
-    grep -ozP "action\s*\(\s*type\s*=\s*\"omfile\"[^\)]*\)" {{ item.1.path }} | \
+    grep -iozP "action\s*\(\s*type\s*=\s*\"omfile\"[^\)]*\)" {{ item.1.path }} | \
 
-    grep -aoP "\bFile\s*=\s*\"([/[:alnum:][:punct:]]*)\"\s*\)" | \
+    grep -iaoP "\bFile\s*=\s*\"([/[:alnum:][:punct:]]*)\"\s*\)" | \
 
     grep -oE "\"([/[:alnum:][:punct:]]*)\"" | \
 
-    tr -d "\""|| true
+    tr -d "\"" | \
+
+    grep -v ''^/dev/'' || true
 
     '
   loop: '{{ rsyslog_config_files.results | default([]) | subelements(''files'') }}'
@@ -10624,7 +10680,7 @@
 - name: Ensure System Log Files Have Correct Permissions - Extract log files old format
   ansible.builtin.shell: 'set -o pipefail
 
-    grep -oP ''^[^(\s|#|\$)]+[\s]+.*[\s]+-?(/+[^:;\s]+);*\.*$'' {{ item.1.path }} | \
+    grep -oP ''^[^(\s|#|\$)]+[\s]*.*[\s]+-?(/+[^:;\s]+);*\.*$'' {{ item.1.path }} | \
 
     awk ''{print $NF}'' | \
 
@@ -10662,13 +10718,15 @@
 - name: Ensure System Log Files Have Correct Permissions - Extract log files new format
   ansible.builtin.shell: 'set -o pipefail
 
-    grep -ozP "action\s*\(\s*type\s*=\s*\"omfile\"[^\)]*\)" {{ item.1.path }} | \
+    grep -iozP "action\s*\(\s*type\s*=\s*\"omfile\"[^\)]*\)" {{ item.1.path }} | \
 
-    grep -aoP "\bFile\s*=\s*\"([/[:alnum:][:punct:]]*)\"\s*\)" | \
+    grep -iaoP "\bFile\s*=\s*\"([/[:alnum:][:punct:]]*)\"\s*\)" | \
 
     grep -oE "\"([/[:alnum:][:punct:]]*)\"" | \
 
-    tr -d "\""|| true
+    tr -d "\"" | \
+
+    grep -v ''^/dev/'' || true
 
     '
   loop: '{{ rsyslog_config_files.results | default([]) | subelements(''files'') }}'
@@ -11139,12 +11197,48 @@
   - reboot_required
   - sysctl_net_ipv6_conf_default_accept_source_route
 
+- name: Disable Kernel Parameter for Accepting Source-Routed Packets on IPv6 Interfaces by Default - Comment out any occurrences
+    of net.ipv6.conf.default.accept_source_route from /etc/sysctl.conf
+  ansible.builtin.replace:
+    path: '{{ item }}'
+    regexp: ^[\s]*net.ipv6.conf.default.accept_source_route
+    replace: '#net.ipv6.conf.default.accept_source_route'
+  with_fileglob:
+  - /etc/sysctl.conf
+  when:
+  - DISA_STIG_RHEL_08_040250 | bool
+  - disable_strategy | bool
+  - low_complexity | bool
+  - medium_disruption | bool
+  - medium_severity | bool
+  - reboot_required | bool
+  - sysctl_net_ipv6_conf_default_accept_source_route | bool
+  - '"kernel-core" in ansible_facts.packages'
+  tags:
+  - CCE-81015-0
+  - DISA-STIG-RHEL-08-040250
+  - NIST-800-171-3.1.20
+  - NIST-800-53-CM-6(a)
+  - NIST-800-53-CM-6(b)
+  - NIST-800-53-CM-6.1(iv)
+  - NIST-800-53-CM-7(a)
+  - NIST-800-53-CM-7(b)
+  - PCI-DSS-Req-1.4.3
+  - PCI-DSSv4-1.4
+  - PCI-DSSv4-1.4.2
+  - disable_strategy
+  - low_complexity
+  - medium_disruption
+  - medium_severity
+  - reboot_required
+  - sysctl_net_ipv6_conf_default_accept_source_route
+
 - name: Disable Kernel Parameter for Accepting Source-Routed Packets on IPv6 Interfaces by Default - Ensure sysctl net.ipv6.conf.default.accept_source_route
     is set
   ansible.posix.sysctl:
     name: net.ipv6.conf.default.accept_source_route
     value: '{{ sysctl_net_ipv6_conf_default_accept_source_route_value }}'
-    sysctl_file: /etc/sysctl.conf
+    sysctl_file: /etc/sysctl.d/net_ipv6_conf_default_accept_source_route.conf
     state: present
     reload: true
   when:
@@ -11314,12 +11408,47 @@
   - reboot_required
   - sysctl_net_ipv4_conf_all_rp_filter
 
+- name: Enable Kernel Parameter to Use Reverse Path Filtering on all IPv4 Interfaces - Comment out any occurrences of net.ipv4.conf.all.rp_filter
+    from /etc/sysctl.conf
+  ansible.builtin.replace:
+    path: '{{ item }}'
+    regexp: ^[\s]*net.ipv4.conf.all.rp_filter
+    replace: '#net.ipv4.conf.all.rp_filter'
+  with_fileglob:
+  - /etc/sysctl.conf
+  when:
+  - DISA_STIG_RHEL_08_040285 | bool
+  - disable_strategy | bool
+  - low_complexity | bool
+  - medium_disruption | bool
+  - medium_severity | bool
+  - reboot_required | bool
+  - sysctl_net_ipv4_conf_all_rp_filter | bool
+  - '"kernel-core" in ansible_facts.packages'
+  tags:
+  - CCE-81021-8
+  - DISA-STIG-RHEL-08-040285
+  - NIST-800-171-3.1.20
+  - NIST-800-53-CM-6(a)
+  - NIST-800-53-CM-7(a)
+  - NIST-800-53-CM-7(b)
+  - NIST-800-53-SC-7(a)
+  - PCI-DSS-Req-1.4.3
+  - PCI-DSSv4-1.4
+  - PCI-DSSv4-1.4.3
+  - disable_strategy
+  - low_complexity
+  - medium_disruption
+  - medium_severity
+  - reboot_required
+  - sysctl_net_ipv4_conf_all_rp_filter
+
 - name: Enable Kernel Parameter to Use Reverse Path Filtering on all IPv4 Interfaces - Ensure sysctl net.ipv4.conf.all.rp_filter
     is set
   ansible.posix.sysctl:
     name: net.ipv4.conf.all.rp_filter
     value: '{{ sysctl_net_ipv4_conf_all_rp_filter_value }}'
-    sysctl_file: /etc/sysctl.conf
+    sysctl_file: /etc/sysctl.d/net_ipv4_conf_all_rp_filter.conf
     state: present
     reload: true
   when:
@@ -11481,12 +11610,45 @@
   - reboot_required
   - sysctl_net_ipv4_conf_all_secure_redirects
 
+- name: Disable Kernel Parameter for Accepting Secure ICMP Redirects on all IPv4 Interfaces - Comment out any occurrences
+    of net.ipv4.conf.all.secure_redirects from /etc/sysctl.conf
+  ansible.builtin.replace:
+    path: '{{ item }}'
+    regexp: ^[\s]*net.ipv4.conf.all.secure_redirects
+    replace: '#net.ipv4.conf.all.secure_redirects'
+  with_fileglob:
+  - /etc/sysctl.conf
+  when:
+  - disable_strategy | bool
+  - low_complexity | bool
+  - medium_disruption | bool
+  - medium_severity | bool
+  - reboot_required | bool
+  - sysctl_net_ipv4_conf_all_secure_redirects | bool
+  - '"kernel-core" in ansible_facts.packages'
+  tags:
+  - CCE-81016-8
+  - NIST-800-171-3.1.20
+  - NIST-800-53-CM-6(a)
+  - NIST-800-53-CM-7(a)
+  - NIST-800-53-CM-7(b)
+  - NIST-800-53-SC-7(a)
+  - PCI-DSS-Req-1.4.3
+  - PCI-DSSv4-1.4
+  - PCI-DSSv4-1.4.3
+  - disable_strategy
+  - low_complexity
+  - medium_disruption
+  - medium_severity
+  - reboot_required
+  - sysctl_net_ipv4_conf_all_secure_redirects
+
 - name: Disable Kernel Parameter for Accepting Secure ICMP Redirects on all IPv4 Interfaces - Ensure sysctl net.ipv4.conf.all.secure_redirects
     is set
   ansible.posix.sysctl:
     name: net.ipv4.conf.all.secure_redirects
     value: '{{ sysctl_net_ipv4_conf_all_secure_redirects_value }}'
-    sysctl_file: /etc/sysctl.conf
+    sysctl_file: /etc/sysctl.d/net_ipv4_conf_all_secure_redirects.conf
     state: present
     reload: true
   when:
@@ -11658,12 +11820,48 @@
   - reboot_required
   - sysctl_net_ipv4_conf_default_accept_redirects
 
+- name: Disable Kernel Parameter for Accepting ICMP Redirects by Default on IPv4 Interfaces - Comment out any occurrences
+    of net.ipv4.conf.default.accept_redirects from /etc/sysctl.conf
+  ansible.builtin.replace:
+    path: '{{ item }}'
+    regexp: ^[\s]*net.ipv4.conf.default.accept_redirects
+    replace: '#net.ipv4.conf.default.accept_redirects'
+  with_fileglob:
+  - /etc/sysctl.conf
+  when:
+  - DISA_STIG_RHEL_08_040209 | bool
+  - disable_strategy | bool
+  - low_complexity | bool
+  - medium_disruption | bool
+  - medium_severity | bool
+  - reboot_required | bool
+  - sysctl_net_ipv4_conf_default_accept_redirects | bool
+  - '"kernel-core" in ansible_facts.packages'
+  tags:
+  - CCE-80919-4
+  - CJIS-5.10.1.1
+  - DISA-STIG-RHEL-08-040209
+  - NIST-800-171-3.1.20
+  - NIST-800-53-CM-6(a)
+  - NIST-800-53-CM-7(a)
+  - NIST-800-53-CM-7(b)
+  - NIST-800-53-SC-7(a)
+  - PCI-DSS-Req-1.4.3
+  - PCI-DSSv4-1.4
+  - PCI-DSSv4-1.4.3
+  - disable_strategy
+  - low_complexity
+  - medium_disruption
+  - medium_severity
+  - reboot_required
+  - sysctl_net_ipv4_conf_default_accept_redirects
+
 - name: Disable Kernel Parameter for Accepting ICMP Redirects by Default on IPv4 Interfaces - Ensure sysctl net.ipv4.conf.default.accept_redirects
     is set
   ansible.posix.sysctl:
     name: net.ipv4.conf.default.accept_redirects
     value: '{{ sysctl_net_ipv4_conf_default_accept_redirects_value }}'
-    sysctl_file: /etc/sysctl.conf
+    sysctl_file: /etc/sysctl.d/net_ipv4_conf_default_accept_redirects.conf
     state: present
     reload: true
   when:
@@ -11833,12 +12031,47 @@
   - reboot_required
   - sysctl_net_ipv4_icmp_echo_ignore_broadcasts
 
+- name: Enable Kernel Parameter to Ignore ICMP Broadcast Echo Requests on IPv4 Interfaces - Comment out any occurrences of
+    net.ipv4.icmp_echo_ignore_broadcasts from /etc/sysctl.conf
+  ansible.builtin.replace:
+    path: '{{ item }}'
+    regexp: ^[\s]*net.ipv4.icmp_echo_ignore_broadcasts
+    replace: '#net.ipv4.icmp_echo_ignore_broadcasts'
+  with_fileglob:
+  - /etc/sysctl.conf
+  when:
+  - DISA_STIG_RHEL_08_040230 | bool
+  - disable_strategy | bool
+  - low_complexity | bool
+  - medium_disruption | bool
+  - medium_severity | bool
+  - reboot_required | bool
+  - sysctl_net_ipv4_icmp_echo_ignore_broadcasts | bool
+  - '"kernel-core" in ansible_facts.packages'
+  tags:
+  - CCE-80922-8
+  - CJIS-5.10.1.1
+  - DISA-STIG-RHEL-08-040230
+  - NIST-800-171-3.1.20
+  - NIST-800-53-CM-7(a)
+  - NIST-800-53-CM-7(b)
+  - NIST-800-53-SC-5
+  - PCI-DSS-Req-1.4.3
+  - PCI-DSSv4-1.4
+  - PCI-DSSv4-1.4.2
+  - disable_strategy
+  - low_complexity
+  - medium_disruption
+  - medium_severity
+  - reboot_required
+  - sysctl_net_ipv4_icmp_echo_ignore_broadcasts
+
 - name: Enable Kernel Parameter to Ignore ICMP Broadcast Echo Requests on IPv4 Interfaces - Ensure sysctl net.ipv4.icmp_echo_ignore_broadcasts
     is set
   ansible.posix.sysctl:
     name: net.ipv4.icmp_echo_ignore_broadcasts
     value: '{{ sysctl_net_ipv4_icmp_echo_ignore_broadcasts_value }}'
-    sysctl_file: /etc/sysctl.conf
+    sysctl_file: /etc/sysctl.d/net_ipv4_icmp_echo_ignore_broadcasts.conf
     state: present
     reload: true
   when:
@@ -11995,12 +12228,44 @@
   - sysctl_net_ipv4_icmp_ignore_bogus_error_responses
   - unknown_severity
 
+- name: Enable Kernel Parameter to Ignore Bogus ICMP Error Responses on IPv4 Interfaces - Comment out any occurrences of net.ipv4.icmp_ignore_bogus_error_responses
+    from /etc/sysctl.conf
+  ansible.builtin.replace:
+    path: '{{ item }}'
+    regexp: ^[\s]*net.ipv4.icmp_ignore_bogus_error_responses
+    replace: '#net.ipv4.icmp_ignore_bogus_error_responses'
+  with_fileglob:
+  - /etc/sysctl.conf
+  when:
+  - disable_strategy | bool
+  - low_complexity | bool
+  - medium_disruption | bool
+  - reboot_required | bool
+  - sysctl_net_ipv4_icmp_ignore_bogus_error_responses | bool
+  - unknown_severity | bool
+  - '"kernel-core" in ansible_facts.packages'
+  tags:
+  - CCE-81023-4
+  - NIST-800-171-3.1.20
+  - NIST-800-53-CM-7(a)
+  - NIST-800-53-CM-7(b)
+  - NIST-800-53-SC-5
+  - PCI-DSS-Req-1.4.3
+  - PCI-DSSv4-1.4
+  - PCI-DSSv4-1.4.2
+  - disable_strategy
+  - low_complexity
+  - medium_disruption
+  - reboot_required
+  - sysctl_net_ipv4_icmp_ignore_bogus_error_responses
+  - unknown_severity
+
 - name: Enable Kernel Parameter to Ignore Bogus ICMP Error Responses on IPv4 Interfaces - Ensure sysctl net.ipv4.icmp_ignore_bogus_error_responses
     is set
   ansible.posix.sysctl:
     name: net.ipv4.icmp_ignore_bogus_error_responses
     value: '{{ sysctl_net_ipv4_icmp_ignore_bogus_error_responses_value }}'
-    sysctl_file: /etc/sysctl.conf
+    sysctl_file: /etc/sysctl.d/net_ipv4_icmp_ignore_bogus_error_responses.conf
     state: present
     reload: true
   when:
@@ -12170,11 +12435,47 @@
   - reboot_required
   - sysctl_net_ipv4_tcp_syncookies
 
+- name: Enable Kernel Parameter to Use TCP Syncookies on Network Interfaces - Comment out any occurrences of net.ipv4.tcp_syncookies
+    from /etc/sysctl.conf
+  ansible.builtin.replace:
+    path: '{{ item }}'
+    regexp: ^[\s]*net.ipv4.tcp_syncookies
+    replace: '#net.ipv4.tcp_syncookies'
+  with_fileglob:
+  - /etc/sysctl.conf
+  when:
+  - disable_strategy | bool
+  - low_complexity | bool
+  - medium_disruption | bool
+  - medium_severity | bool
+  - reboot_required | bool
+  - sysctl_net_ipv4_tcp_syncookies | bool
+  - '"kernel-core" in ansible_facts.packages'
+  tags:
+  - CCE-80923-6
+  - CJIS-5.10.1.1
+  - NIST-800-171-3.1.20
+  - NIST-800-53-CM-6(a)
+  - NIST-800-53-CM-7(a)
+  - NIST-800-53-CM-7(b)
+  - NIST-800-53-SC-5(1)
+  - NIST-800-53-SC-5(2)
+  - NIST-800-53-SC-5(3)(a)
+  - PCI-DSS-Req-1.4.1
+  - PCI-DSSv4-1.4
+  - PCI-DSSv4-1.4.3
+  - disable_strategy
+  - low_complexity
+  - medium_disruption
+  - medium_severity
+  - reboot_required
+  - sysctl_net_ipv4_tcp_syncookies
+
 - name: Enable Kernel Parameter to Use TCP Syncookies on Network Interfaces - Ensure sysctl net.ipv4.tcp_syncookies is set
   ansible.posix.sysctl:
     name: net.ipv4.tcp_syncookies
     value: '{{ sysctl_net_ipv4_tcp_syncookies_value }}'
-    sysctl_file: /etc/sysctl.conf
+    sysctl_file: /etc/sysctl.d/net_ipv4_tcp_syncookies.conf
     state: present
     reload: true
   when:
@@ -12347,12 +12648,48 @@
   - reboot_required
   - sysctl_net_ipv4_conf_all_send_redirects
 
+- name: Disable Kernel Parameter for Sending ICMP Redirects on all IPv4 Interfaces - Comment out any occurrences of net.ipv4.conf.all.send_redirects
+    from /etc/sysctl.conf
+  ansible.builtin.replace:
+    path: '{{ item }}'
+    regexp: ^[\s]*net.ipv4.conf.all.send_redirects
+    replace: '#net.ipv4.conf.all.send_redirects'
+  with_fileglob:
+  - /etc/sysctl.conf
+  when:
+  - DISA_STIG_RHEL_08_040220 | bool
+  - disable_strategy | bool
+  - low_complexity | bool
+  - medium_disruption | bool
+  - medium_severity | bool
+  - reboot_required | bool
+  - sysctl_net_ipv4_conf_all_send_redirects | bool
+  - '"kernel-core" in ansible_facts.packages'
+  tags:
+  - CCE-80918-6
+  - CJIS-5.10.1.1
+  - DISA-STIG-RHEL-08-040220
+  - NIST-800-171-3.1.20
+  - NIST-800-53-CM-6(a)
+  - NIST-800-53-CM-7(a)
+  - NIST-800-53-CM-7(b)
+  - NIST-800-53-SC-5
+  - NIST-800-53-SC-7(a)
+  - PCI-DSSv4-1.4
+  - PCI-DSSv4-1.4.5
+  - disable_strategy
+  - low_complexity
+  - medium_disruption
+  - medium_severity
+  - reboot_required
+  - sysctl_net_ipv4_conf_all_send_redirects
+
 - name: Disable Kernel Parameter for Sending ICMP Redirects on all IPv4 Interfaces - Ensure sysctl net.ipv4.conf.all.send_redirects
     is set to 0
   ansible.posix.sysctl:
     name: net.ipv4.conf.all.send_redirects
     value: '0'
-    sysctl_file: /etc/sysctl.conf
+    sysctl_file: /etc/sysctl.d/net_ipv4_conf_all_send_redirects.conf
     state: present
     reload: true
   when:
@@ -12526,12 +12863,48 @@
   - reboot_required
   - sysctl_net_ipv4_conf_default_send_redirects
 
+- name: Disable Kernel Parameter for Sending ICMP Redirects on all IPv4 Interfaces by Default - Comment out any occurrences
+    of net.ipv4.conf.default.send_redirects from /etc/sysctl.conf
+  ansible.builtin.replace:
+    path: '{{ item }}'
+    regexp: ^[\s]*net.ipv4.conf.default.send_redirects
+    replace: '#net.ipv4.conf.default.send_redirects'
+  with_fileglob:
+  - /etc/sysctl.conf
+  when:
+  - DISA_STIG_RHEL_08_040270 | bool
+  - disable_strategy | bool
+  - low_complexity | bool
+  - medium_disruption | bool
+  - medium_severity | bool
+  - reboot_required | bool
+  - sysctl_net_ipv4_conf_default_send_redirects | bool
+  - '"kernel-core" in ansible_facts.packages'
+  tags:
+  - CCE-80921-0
+  - CJIS-5.10.1.1
+  - DISA-STIG-RHEL-08-040270
+  - NIST-800-171-3.1.20
+  - NIST-800-53-CM-6(a)
+  - NIST-800-53-CM-7(a)
+  - NIST-800-53-CM-7(b)
+  - NIST-800-53-SC-5
+  - NIST-800-53-SC-7(a)
+  - PCI-DSSv4-1.4
+  - PCI-DSSv4-1.4.5
+  - disable_strategy
+  - low_complexity
+  - medium_disruption
+  - medium_severity
+  - reboot_required
+  - sysctl_net_ipv4_conf_default_send_redirects
+
 - name: Disable Kernel Parameter for Sending ICMP Redirects on all IPv4 Interfaces by Default - Ensure sysctl net.ipv4.conf.default.send_redirects
     is set to 0
   ansible.posix.sysctl:
     name: net.ipv4.conf.default.send_redirects
     value: '0'
-    sysctl_file: /etc/sysctl.conf
+    sysctl_file: /etc/sysctl.d/net_ipv4_conf_default_send_redirects.conf
     state: present
     reload: true
   when:
@@ -12700,11 +13073,46 @@
   - reboot_required
   - sysctl_net_ipv4_ip_forward
 
+- name: Disable Kernel Parameter for IP Forwarding on IPv4 Interfaces - Comment out any occurrences of net.ipv4.ip_forward
+    from /etc/sysctl.conf
+  ansible.builtin.replace:
+    path: '{{ item }}'
+    regexp: ^[\s]*net.ipv4.ip_forward
+    replace: '#net.ipv4.ip_forward'
+  with_fileglob:
+  - /etc/sysctl.conf
+  when:
+  - disable_strategy | bool
+  - low_complexity | bool
+  - medium_disruption | bool
+  - medium_severity | bool
+  - reboot_required | bool
+  - sysctl_net_ipv4_ip_forward | bool
+  - '"kernel-core" in ansible_facts.packages'
+  tags:
+  - CCE-81024-2
+  - NIST-800-171-3.1.20
+  - NIST-800-53-CM-6(a)
+  - NIST-800-53-CM-7(a)
+  - NIST-800-53-CM-7(b)
+  - NIST-800-53-SC-5
+  - NIST-800-53-SC-7(a)
+  - PCI-DSS-Req-1.3.1
+  - PCI-DSS-Req-1.3.2
+  - PCI-DSSv4-1.4
+  - PCI-DSSv4-1.4.3
+  - disable_strategy
+  - low_complexity
+  - medium_disruption
+  - medium_severity
+  - reboot_required
+  - sysctl_net_ipv4_ip_forward
+
 - name: Disable Kernel Parameter for IP Forwarding on IPv4 Interfaces - Ensure sysctl net.ipv4.ip_forward is set to 0
   ansible.posix.sysctl:
     name: net.ipv4.ip_forward
     value: '0'
-    sysctl_file: /etc/sysctl.conf
+    sysctl_file: /etc/sysctl.d/net_ipv4_ip_forward.conf
     state: present
     reload: true
   when:
@@ -12862,7 +13270,7 @@
   - medium_severity
   - reboot_required
 
-- name: NetworkManager Deactivate Wireless Network Interfaces
+- name: Deactivate Wireless Network Interfaces - NetworkManager Deactivate Wireless Network Interfaces
   ansible.builtin.command: nmcli radio wifi off
   when:
   - DISA_STIG_RHEL_08_040110 | bool
@@ -14567,11 +14975,41 @@
   - reboot_required
   - sysctl_kernel_core_pattern
 
+- name: Disable storing core dumps - Comment out any occurrences of kernel.core_pattern from /etc/sysctl.conf
+  ansible.builtin.replace:
+    path: '{{ item }}'
+    regexp: ^[\s]*kernel.core_pattern
+    replace: '#kernel.core_pattern'
+  with_fileglob:
+  - /etc/sysctl.conf
+  when:
+  - DISA_STIG_RHEL_08_010671 | bool
+  - disable_strategy | bool
+  - low_complexity | bool
+  - medium_disruption | bool
+  - medium_severity | bool
+  - reboot_required | bool
+  - sysctl_kernel_core_pattern | bool
+  - '"kernel-core" in ansible_facts.packages'
+  tags:
+  - CCE-82215-5
+  - DISA-STIG-RHEL-08-010671
+  - NIST-800-53-SC-7(10)
+  - PCI-DSSv4-3.3
+  - PCI-DSSv4-3.3.1
+  - PCI-DSSv4-3.3.1.1
+  - disable_strategy
+  - low_complexity
+  - medium_disruption
+  - medium_severity
+  - reboot_required
+  - sysctl_kernel_core_pattern
+
 - name: Disable storing core dumps - Ensure sysctl kernel.core_pattern is set to |/bin/false
   ansible.posix.sysctl:
     name: kernel.core_pattern
     value: '|/bin/false'
-    sysctl_file: /etc/sysctl.conf
+    sysctl_file: /etc/sysctl.d/kernel_core_pattern.conf
     state: present
     reload: true
   when:
@@ -15271,11 +15709,40 @@
   - reboot_required
   - sysctl_fs_suid_dumpable
 
+- name: Disable Core Dumps for SUID programs - Comment out any occurrences of fs.suid_dumpable from /etc/sysctl.conf
+  ansible.builtin.replace:
+    path: '{{ item }}'
+    regexp: ^[\s]*fs.suid_dumpable
+    replace: '#fs.suid_dumpable'
+  with_fileglob:
+  - /etc/sysctl.conf
+  when:
+  - disable_strategy | bool
+  - low_complexity | bool
+  - medium_disruption | bool
+  - medium_severity | bool
+  - reboot_required | bool
+  - sysctl_fs_suid_dumpable | bool
+  - '"kernel-core" in ansible_facts.packages'
+  tags:
+  - CCE-80912-9
+  - NIST-800-53-SI-11(a)
+  - NIST-800-53-SI-11(b)
+  - PCI-DSSv4-3.3
+  - PCI-DSSv4-3.3.1
+  - PCI-DSSv4-3.3.1.1
+  - disable_strategy
+  - low_complexity
+  - medium_disruption
+  - medium_severity
+  - reboot_required
+  - sysctl_fs_suid_dumpable
+
 - name: Disable Core Dumps for SUID programs - Ensure sysctl fs.suid_dumpable is set to 0
   ansible.posix.sysctl:
     name: fs.suid_dumpable
     value: '0'
-    sysctl_file: /etc/sysctl.conf
+    sysctl_file: /etc/sysctl.d/fs_suid_dumpable.conf
     state: present
     reload: true
   when:
@@ -15437,11 +15904,46 @@
   - reboot_required
   - sysctl_kernel_randomize_va_space
 
+- name: Enable Randomized Layout of Virtual Address Space - Comment out any occurrences of kernel.randomize_va_space from
+    /etc/sysctl.conf
+  ansible.builtin.replace:
+    path: '{{ item }}'
+    regexp: ^[\s]*kernel.randomize_va_space
+    replace: '#kernel.randomize_va_space'
+  with_fileglob:
+  - /etc/sysctl.conf
+  when:
+  - DISA_STIG_RHEL_08_010430 | bool
+  - disable_strategy | bool
+  - low_complexity | bool
+  - medium_disruption | bool
+  - medium_severity | bool
+  - reboot_required | bool
+  - sysctl_kernel_randomize_va_space | bool
+  - '"kernel-core" in ansible_facts.packages'
+  tags:
+  - CCE-80916-0
+  - DISA-STIG-RHEL-08-010430
+  - NIST-800-171-3.1.7
+  - NIST-800-53-CM-6(a)
+  - NIST-800-53-SC-30
+  - NIST-800-53-SC-30(2)
+  - PCI-DSS-Req-2.2.1
+  - PCI-DSSv4-3.3
+  - PCI-DSSv4-3.3.1
+  - PCI-DSSv4-3.3.1.1
+  - disable_strategy
+  - low_complexity
+  - medium_disruption
+  - medium_severity
+  - reboot_required
+  - sysctl_kernel_randomize_va_space
+
 - name: Enable Randomized Layout of Virtual Address Space - Ensure sysctl kernel.randomize_va_space is set to 2
   ansible.posix.sysctl:
     name: kernel.randomize_va_space
     value: '2'
-    sysctl_file: /etc/sysctl.conf
+    sysctl_file: /etc/sysctl.d/kernel_randomize_va_space.conf
     state: present
     reload: true
   when:
@@ -15700,7 +16202,7 @@
 - name: Ensure SELinux State is Enforcing - Check current SELinux state
   ansible.builtin.command:
     cmd: getenforce
-  register: selinux_state
+  register: current_selinux_state
   check_mode: false
   changed_when: false
   when:
@@ -15797,7 +16299,7 @@
   - restrict_strategy | bool
   - selinux_state | bool
   - '"kernel-core" in ansible_facts.packages'
-  - selinux_state.stdout | lower != var_selinux_state
+  - current_selinux_state.stdout | lower != var_selinux_state
   tags:
   - CCE-80869-1
   - DISA-STIG-RHEL-08-010170
@@ -17142,10 +17644,10 @@
   - medium_severity
   - no_reboot_needed
 
-- name: Ensure permission u-xs,g-xwrs,o-xwrt on /etc/cron.allow
+- name: Ensure permission u-xs,g-xws,o-xwrt on /etc/cron.allow
   ansible.builtin.file:
     path: /etc/cron.allow
-    mode: u-xs,g-xwrs,o-xwrt
+    mode: u-xs,g-xws,o-xwrt
   when:
   - configure_strategy | bool
   - file_permissions_cron_allow | bool
@@ -17260,12 +17762,12 @@
   - no_reboot_needed
   - service_chronyd_or_ntpd_enabled
 
-- name: Detect if chrony is already configured with pools or servers
-  ansible.builtin.find:
-    path: /etc
-    patterns: chrony.conf
-    contains: ^[\s]*(?:server|pool)[\s]+[\w]+
-  register: chrony_servers
+- name: Check if chrony main config has active server/pool entries
+  ansible.builtin.command:
+    cmd: grep -q '^[[:space:]]*\(server\|pool\)[[:space:]]\+[[:graph:]]\+' /etc/chrony.conf
+  register: chrony_conf_has_servers
+  changed_when: false
+  failed_when: false
   when:
   - DISA_STIG_RHEL_08_030740 | bool
   - chronyd_specify_remote_server | bool
@@ -17291,7 +17793,281 @@
   - medium_severity
   - no_reboot_needed
 
-- name: Configure remote time servers
+- name: Extract sourcedir paths from chrony configuration
+  ansible.builtin.shell:
+    cmd: grep '^[[:space:]]*sourcedir[[:space:]]\+' /etc/chrony.conf | awk '{print $2}'
+  register: chrony_sourcedir_paths
+  changed_when: false
+  failed_when: false
+  when:
+  - DISA_STIG_RHEL_08_030740 | bool
+  - chronyd_specify_remote_server | bool
+  - configure_strategy | bool
+  - low_complexity | bool
+  - low_disruption | bool
+  - medium_severity | bool
+  - no_reboot_needed | bool
+  - '"kernel-core" in ansible_facts.packages'
+  - '"chrony" in ansible_facts.packages'
+  - chrony_conf_has_servers.rc != 0
+  tags:
+  - CCE-82873-1
+  - DISA-STIG-RHEL-08-030740
+  - NIST-800-53-AU-8(1)(a)
+  - NIST-800-53-CM-6(a)
+  - PCI-DSS-Req-10.4.3
+  - PCI-DSSv4-10.6
+  - PCI-DSSv4-10.6.2
+  - chronyd_specify_remote_server
+  - configure_strategy
+  - low_complexity
+  - low_disruption
+  - medium_severity
+  - no_reboot_needed
+
+- name: Check for server/pool entries in sourcedir .sources files
+  ansible.builtin.shell:
+    cmd: "for dir in {{ chrony_sourcedir_paths.stdout_lines | join(' ') }}; do\n  if [ -d \"$dir\" ]; then\n    grep -q '^[[:space:]]*\\\
+      (server\\|pool\\)[[:space:]]\\+[[:graph:]]\\+' \"$dir\"/*.sources 2>/dev/null && exit 0\n  fi\ndone\nexit 1\n"
+  register: chrony_sourcedir_has_servers
+  changed_when: false
+  failed_when: false
+  when:
+  - DISA_STIG_RHEL_08_030740 | bool
+  - chronyd_specify_remote_server | bool
+  - configure_strategy | bool
+  - low_complexity | bool
+  - low_disruption | bool
+  - medium_severity | bool
+  - no_reboot_needed | bool
+  - '"kernel-core" in ansible_facts.packages'
+  - '"chrony" in ansible_facts.packages'
+  - chrony_conf_has_servers.rc != 0
+  - chrony_sourcedir_paths.stdout_lines | length > 0
+  tags:
+  - CCE-82873-1
+  - DISA-STIG-RHEL-08-030740
+  - NIST-800-53-AU-8(1)(a)
+  - NIST-800-53-CM-6(a)
+  - PCI-DSS-Req-10.4.3
+  - PCI-DSSv4-10.6
+  - PCI-DSSv4-10.6.2
+  - chronyd_specify_remote_server
+  - configure_strategy
+  - low_complexity
+  - low_disruption
+  - medium_severity
+  - no_reboot_needed
+
+- name: Extract confdir paths from chrony configuration
+  ansible.builtin.shell:
+    cmd: grep '^[[:space:]]*confdir[[:space:]]\+' /etc/chrony.conf | awk '{print $2}'
+  register: chrony_confdir_paths
+  changed_when: false
+  failed_when: false
+  when:
+  - DISA_STIG_RHEL_08_030740 | bool
+  - chronyd_specify_remote_server | bool
+  - configure_strategy | bool
+  - low_complexity | bool
+  - low_disruption | bool
+  - medium_severity | bool
+  - no_reboot_needed | bool
+  - '"kernel-core" in ansible_facts.packages'
+  - '"chrony" in ansible_facts.packages'
+  - chrony_conf_has_servers.rc != 0
+  - (chrony_sourcedir_paths.stdout_lines | default([]) | length == 0 or chrony_sourcedir_has_servers.rc != 0)
+  tags:
+  - CCE-82873-1
+  - DISA-STIG-RHEL-08-030740
+  - NIST-800-53-AU-8(1)(a)
+  - NIST-800-53-CM-6(a)
+  - PCI-DSS-Req-10.4.3
+  - PCI-DSSv4-10.6
+  - PCI-DSSv4-10.6.2
+  - chronyd_specify_remote_server
+  - configure_strategy
+  - low_complexity
+  - low_disruption
+  - medium_severity
+  - no_reboot_needed
+
+- name: Check for server/pool entries in confdir .conf files
+  ansible.builtin.shell:
+    cmd: "for dir in {{ chrony_confdir_paths.stdout_lines | join(' ') }}; do\n  if [ -d \"$dir\" ]; then\n    grep -q '^[[:space:]]*\\\
+      (server\\|pool\\)[[:space:]]\\+[[:graph:]]\\+' \"$dir\"/*.conf 2>/dev/null && exit 0\n  fi\ndone\nexit 1\n"
+  register: chrony_confdir_has_servers
+  changed_when: false
+  failed_when: false
+  when:
+  - DISA_STIG_RHEL_08_030740 | bool
+  - chronyd_specify_remote_server | bool
+  - configure_strategy | bool
+  - low_complexity | bool
+  - low_disruption | bool
+  - medium_severity | bool
+  - no_reboot_needed | bool
+  - '"kernel-core" in ansible_facts.packages'
+  - '"chrony" in ansible_facts.packages'
+  - chrony_conf_has_servers.rc != 0
+  - chrony_confdir_paths.stdout_lines | default([]) | length > 0
+  - (chrony_sourcedir_paths.stdout_lines | default([]) | length == 0 or chrony_sourcedir_has_servers.rc != 0)
+  tags:
+  - CCE-82873-1
+  - DISA-STIG-RHEL-08-030740
+  - NIST-800-53-AU-8(1)(a)
+  - NIST-800-53-CM-6(a)
+  - PCI-DSS-Req-10.4.3
+  - PCI-DSSv4-10.6
+  - PCI-DSSv4-10.6.2
+  - chronyd_specify_remote_server
+  - configure_strategy
+  - low_complexity
+  - low_disruption
+  - medium_severity
+  - no_reboot_needed
+
+- name: Create sourcedir directory if needed
+  ansible.builtin.file:
+    path: '{{ chrony_sourcedir_paths.stdout_lines[0] }}'
+    state: directory
+    mode: '0755'
+  when:
+  - DISA_STIG_RHEL_08_030740 | bool
+  - chronyd_specify_remote_server | bool
+  - configure_strategy | bool
+  - low_complexity | bool
+  - low_disruption | bool
+  - medium_severity | bool
+  - no_reboot_needed | bool
+  - '"kernel-core" in ansible_facts.packages'
+  - '"chrony" in ansible_facts.packages'
+  - chrony_conf_has_servers.rc != 0
+  - chrony_sourcedir_paths.stdout_lines | default([]) | length > 0
+  - chrony_sourcedir_has_servers.rc != 0
+  tags:
+  - CCE-82873-1
+  - DISA-STIG-RHEL-08-030740
+  - NIST-800-53-AU-8(1)(a)
+  - NIST-800-53-CM-6(a)
+  - PCI-DSS-Req-10.4.3
+  - PCI-DSSv4-10.6
+  - PCI-DSSv4-10.6.2
+  - chronyd_specify_remote_server
+  - configure_strategy
+  - low_complexity
+  - low_disruption
+  - medium_severity
+  - no_reboot_needed
+
+- name: Add remote time servers to sourcedir .sources file
+  ansible.builtin.lineinfile:
+    path: '{{ chrony_sourcedir_paths.stdout_lines[0] }}/ntp-servers.sources'
+    line: server {{ item }}
+    state: present
+    create: true
+    mode: '0644'
+  loop: '{{ var_multiple_time_servers.split(",") }}'
+  when:
+  - DISA_STIG_RHEL_08_030740 | bool
+  - chronyd_specify_remote_server | bool
+  - configure_strategy | bool
+  - low_complexity | bool
+  - low_disruption | bool
+  - medium_severity | bool
+  - no_reboot_needed | bool
+  - '"kernel-core" in ansible_facts.packages'
+  - '"chrony" in ansible_facts.packages'
+  - chrony_conf_has_servers.rc != 0
+  - chrony_sourcedir_paths.stdout_lines | default([]) | length > 0
+  - chrony_sourcedir_has_servers.rc != 0
+  tags:
+  - CCE-82873-1
+  - DISA-STIG-RHEL-08-030740
+  - NIST-800-53-AU-8(1)(a)
+  - NIST-800-53-CM-6(a)
+  - PCI-DSS-Req-10.4.3
+  - PCI-DSSv4-10.6
+  - PCI-DSSv4-10.6.2
+  - chronyd_specify_remote_server
+  - configure_strategy
+  - low_complexity
+  - low_disruption
+  - medium_severity
+  - no_reboot_needed
+
+- name: Create confdir directory if needed
+  ansible.builtin.file:
+    path: '{{ chrony_confdir_paths.stdout_lines[0] }}'
+    state: directory
+    mode: '0755'
+  when:
+  - DISA_STIG_RHEL_08_030740 | bool
+  - chronyd_specify_remote_server | bool
+  - configure_strategy | bool
+  - low_complexity | bool
+  - low_disruption | bool
+  - medium_severity | bool
+  - no_reboot_needed | bool
+  - '"kernel-core" in ansible_facts.packages'
+  - '"chrony" in ansible_facts.packages'
+  - chrony_conf_has_servers.rc != 0
+  - (chrony_sourcedir_paths.stdout_lines | default([]) | length == 0 or chrony_sourcedir_has_servers.rc != 0)
+  - chrony_confdir_paths.stdout_lines | default([]) | length > 0
+  - chrony_confdir_has_servers.rc != 0
+  tags:
+  - CCE-82873-1
+  - DISA-STIG-RHEL-08-030740
+  - NIST-800-53-AU-8(1)(a)
+  - NIST-800-53-CM-6(a)
+  - PCI-DSS-Req-10.4.3
+  - PCI-DSSv4-10.6
+  - PCI-DSSv4-10.6.2
+  - chronyd_specify_remote_server
+  - configure_strategy
+  - low_complexity
+  - low_disruption
+  - medium_severity
+  - no_reboot_needed
+
+- name: Add remote time servers to confdir .conf file
+  ansible.builtin.lineinfile:
+    path: '{{ chrony_confdir_paths.stdout_lines[0] }}/ntp-servers.conf'
+    line: server {{ item }}
+    state: present
+    create: true
+    mode: '0644'
+  loop: '{{ var_multiple_time_servers.split(",") }}'
+  when:
+  - DISA_STIG_RHEL_08_030740 | bool
+  - chronyd_specify_remote_server | bool
+  - configure_strategy | bool
+  - low_complexity | bool
+  - low_disruption | bool
+  - medium_severity | bool
+  - no_reboot_needed | bool
+  - '"kernel-core" in ansible_facts.packages'
+  - '"chrony" in ansible_facts.packages'
+  - chrony_conf_has_servers.rc != 0
+  - (chrony_sourcedir_paths.stdout_lines | default([]) | length == 0 or chrony_sourcedir_has_servers.rc != 0)
+  - chrony_confdir_paths.stdout_lines | default([]) | length > 0
+  - chrony_confdir_has_servers.rc != 0
+  tags:
+  - CCE-82873-1
+  - DISA-STIG-RHEL-08-030740
+  - NIST-800-53-AU-8(1)(a)
+  - NIST-800-53-CM-6(a)
+  - PCI-DSS-Req-10.4.3
+  - PCI-DSSv4-10.6
+  - PCI-DSSv4-10.6.2
+  - chronyd_specify_remote_server
+  - configure_strategy
+  - low_complexity
+  - low_disruption
+  - medium_severity
+  - no_reboot_needed
+
+- name: Add remote time servers to main chrony configuration
   ansible.builtin.lineinfile:
     path: /etc/chrony.conf
     line: server {{ item }}
@@ -17308,7 +18084,9 @@
   - no_reboot_needed | bool
   - '"kernel-core" in ansible_facts.packages'
   - '"chrony" in ansible_facts.packages'
-  - chrony_servers.matched == 0
+  - chrony_conf_has_servers.rc != 0
+  - (chrony_sourcedir_paths.stdout_lines | default([]) | length == 0 or chrony_sourcedir_has_servers.rc != 0)
+  - (chrony_confdir_paths.stdout_lines | default([]) | length == 0 or chrony_confdir_has_servers.rc != 0)
   tags:
   - CCE-82873-1
   - DISA-STIG-RHEL-08-030740
@@ -22835,10 +23613,10 @@
   - restrict_strategy
 
 - name: Record Events that Modify User/Group Information - /etc/passwd - Search /etc/audit/rules.d for other rules with specified
-    key audit_rules_usergroup_modification_passwd
+    key audit_rules_usergroup_modification
   ansible.builtin.find:
     paths: /etc/audit/rules.d
-    contains: ^.*(?:-F key=|-k\s+)audit_rules_usergroup_modification_passwd$
+    contains: ^.*(?:-F key=|-k\s+)audit_rules_usergroup_modification$
     patterns: '*.rules'
   register: find_watch_key
   when:
@@ -22873,11 +23651,11 @@
   - no_reboot_needed
   - restrict_strategy
 
-- name: Record Events that Modify User/Group Information - /etc/passwd - Use /etc/audit/rules.d/audit_rules_usergroup_modification_passwd.rules
+- name: Record Events that Modify User/Group Information - /etc/passwd - Use /etc/audit/rules.d/audit_rules_usergroup_modification.rules
     as the recipient for the rule
   ansible.builtin.set_fact:
     all_files:
-    - /etc/audit/rules.d/audit_rules_usergroup_modification_passwd.rules
+    - /etc/audit/rules.d/audit_rules_usergroup_modification.rules
   when:
   - DISA_STIG_RHEL_08_030150 | bool
   - audit_rules_usergroup_modification_passwd | bool
@@ -22951,7 +23729,7 @@
 - name: Record Events that Modify User/Group Information - /etc/passwd - Add watch rule for /etc/passwd in /etc/audit/rules.d/
   ansible.builtin.lineinfile:
     path: '{{ all_files[0] }}'
-    line: -w /etc/passwd -p wa -k audit_rules_usergroup_modification_passwd
+    line: -w /etc/passwd -p wa -k audit_rules_usergroup_modification
     create: true
     mode: '0600'
   when:
@@ -23026,7 +23804,7 @@
 
 - name: Record Events that Modify User/Group Information - /etc/passwd - Add watch rule for /etc/passwd in /etc/audit/audit.rules
   ansible.builtin.lineinfile:
-    line: -w /etc/passwd -p wa -k audit_rules_usergroup_modification_passwd
+    line: -w /etc/passwd -p wa -k audit_rules_usergroup_modification
     state: present
     dest: /etc/audit/audit.rules
     create: true
@@ -23808,11 +24586,11 @@
   - no_reboot_needed
   - restrict_strategy
 
-- name: Get audit log files
+- name: System Audit Logs Must Have Mode 0640 or Less Permissive - Get audit log file from /etc/audit/auditd.conf
   ansible.builtin.command: grep -iw ^log_file /etc/audit/auditd.conf
+  check_mode: false
   failed_when: false
   changed_when: false
-  check_mode: false
   register: log_file_exists
   when:
   - DISA_STIG_RHEL_08_030070 | bool
@@ -23842,109 +24620,108 @@
   - no_reboot_needed
   - restrict_strategy
 
-- name: Parse log file line
-  ansible.builtin.command: awk -F '=' '/^log_file/ {print $2}' /etc/audit/auditd.conf
-  register: log_file_line
-  changed_when: false
+- name: System Audit Logs Must Have Mode 0640 or Less Permissive - Set audit log file path
+  ansible.builtin.set_fact:
+    log_file_path: '{{ (log_file_exists.stdout | default('''') | split('' '') | last) | default(''/var/log/audit/audit.log'',
+      true) }}'
+  when:
+  - DISA_STIG_RHEL_08_030070 | bool
+  - file_permissions_var_log_audit | bool
+  - low_complexity | bool
+  - low_disruption | bool
+  - medium_severity | bool
+  - no_reboot_needed | bool
+  - restrict_strategy | bool
+  - '"audit" in ansible_facts.packages'
+  - '"kernel-core" in ansible_facts.packages'
+  tags:
+  - CCE-80819-6
+  - CJIS-5.4.1.1
+  - DISA-STIG-RHEL-08-030070
+  - NIST-800-171-3.3.1
+  - NIST-800-53-AC-6(1)
+  - NIST-800-53-AU-9(4)
+  - NIST-800-53-CM-6(a)
+  - PCI-DSS-Req-10.5
+  - PCI-DSSv4-10.3
+  - PCI-DSSv4-10.3.1
+  - file_permissions_var_log_audit
+  - low_complexity
+  - low_disruption
+  - medium_severity
+  - no_reboot_needed
+  - restrict_strategy
+
+- name: System Audit Logs Must Have Mode 0640 or Less Permissive - Get audit log group from /etc/audit/auditd.conf
+  ansible.builtin.command: grep -iw ^log_group /etc/audit/auditd.conf
   check_mode: false
-  when:
-  - DISA_STIG_RHEL_08_030070 | bool
-  - file_permissions_var_log_audit | bool
-  - low_complexity | bool
-  - low_disruption | bool
-  - medium_severity | bool
-  - no_reboot_needed | bool
-  - restrict_strategy | bool
-  - '"audit" in ansible_facts.packages'
-  - '"kernel-core" in ansible_facts.packages'
-  - log_file_exists is not skipped and (log_file_exists.stdout | length > 0)
-  tags:
-  - CCE-80819-6
-  - CJIS-5.4.1.1
-  - DISA-STIG-RHEL-08-030070
-  - NIST-800-171-3.3.1
-  - NIST-800-53-AC-6(1)
-  - NIST-800-53-AU-9(4)
-  - NIST-800-53-CM-6(a)
-  - PCI-DSS-Req-10.5
-  - PCI-DSSv4-10.3
-  - PCI-DSSv4-10.3.1
-  - file_permissions_var_log_audit
-  - low_complexity
-  - low_disruption
-  - medium_severity
-  - no_reboot_needed
-  - restrict_strategy
-
-- name: Set default log_file if not set
-  ansible.builtin.set_fact:
-    log_file: /var/log/audit/audit.log
-  when:
-  - DISA_STIG_RHEL_08_030070 | bool
-  - file_permissions_var_log_audit | bool
-  - low_complexity | bool
-  - low_disruption | bool
-  - medium_severity | bool
-  - no_reboot_needed | bool
-  - restrict_strategy | bool
-  - '"audit" in ansible_facts.packages'
-  - '"kernel-core" in ansible_facts.packages'
-  - (log_file_exists is skipped) or (log_file_exists is undefined) or (log_file_exists.stdout | length == 0)
-  tags:
-  - CCE-80819-6
-  - CJIS-5.4.1.1
-  - DISA-STIG-RHEL-08-030070
-  - NIST-800-171-3.3.1
-  - NIST-800-53-AC-6(1)
-  - NIST-800-53-AU-9(4)
-  - NIST-800-53-CM-6(a)
-  - PCI-DSS-Req-10.5
-  - PCI-DSSv4-10.3
-  - PCI-DSSv4-10.3.1
-  - file_permissions_var_log_audit
-  - low_complexity
-  - low_disruption
-  - medium_severity
-  - no_reboot_needed
-  - restrict_strategy
-
-- name: Set log_file from log_file_line if not set already
-  ansible.builtin.set_fact:
-    log_file: '{{ log_file_line.stdout | trim }}'
-  when:
-  - DISA_STIG_RHEL_08_030070 | bool
-  - file_permissions_var_log_audit | bool
-  - low_complexity | bool
-  - low_disruption | bool
-  - medium_severity | bool
-  - no_reboot_needed | bool
-  - restrict_strategy | bool
-  - '"audit" in ansible_facts.packages'
-  - '"kernel-core" in ansible_facts.packages'
-  - (log_file_exists is not skipped) and (log_file_line.stdout is defined) and (log_file_line.stdout | length > 0)
-  tags:
-  - CCE-80819-6
-  - CJIS-5.4.1.1
-  - DISA-STIG-RHEL-08-030070
-  - NIST-800-171-3.3.1
-  - NIST-800-53-AC-6(1)
-  - NIST-800-53-AU-9(4)
-  - NIST-800-53-CM-6(a)
-  - PCI-DSS-Req-10.5
-  - PCI-DSSv4-10.3
-  - PCI-DSSv4-10.3.1
-  - file_permissions_var_log_audit
-  - low_complexity
-  - low_disruption
-  - medium_severity
-  - no_reboot_needed
-  - restrict_strategy
-
-- name: Apply mode to log file
-  ansible.builtin.file:
-    path: '{{ log_file }}'
-    mode: 384
   failed_when: false
+  changed_when: false
+  register: log_group_exists
+  when:
+  - DISA_STIG_RHEL_08_030070 | bool
+  - file_permissions_var_log_audit | bool
+  - low_complexity | bool
+  - low_disruption | bool
+  - medium_severity | bool
+  - no_reboot_needed | bool
+  - restrict_strategy | bool
+  - '"audit" in ansible_facts.packages'
+  - '"kernel-core" in ansible_facts.packages'
+  tags:
+  - CCE-80819-6
+  - CJIS-5.4.1.1
+  - DISA-STIG-RHEL-08-030070
+  - NIST-800-171-3.3.1
+  - NIST-800-53-AC-6(1)
+  - NIST-800-53-AU-9(4)
+  - NIST-800-53-CM-6(a)
+  - PCI-DSS-Req-10.5
+  - PCI-DSSv4-10.3
+  - PCI-DSSv4-10.3.1
+  - file_permissions_var_log_audit
+  - low_complexity
+  - low_disruption
+  - medium_severity
+  - no_reboot_needed
+  - restrict_strategy
+
+- name: System Audit Logs Must Have Mode 0640 or Less Permissive - Set audit log group
+  ansible.builtin.set_fact:
+    log_group: '{{ (log_group_exists.stdout | default('''') | split('' '') | last) | default(''root'', true) }}'
+  when:
+  - DISA_STIG_RHEL_08_030070 | bool
+  - file_permissions_var_log_audit | bool
+  - low_complexity | bool
+  - low_disruption | bool
+  - medium_severity | bool
+  - no_reboot_needed | bool
+  - restrict_strategy | bool
+  - '"audit" in ansible_facts.packages'
+  - '"kernel-core" in ansible_facts.packages'
+  tags:
+  - CCE-80819-6
+  - CJIS-5.4.1.1
+  - DISA-STIG-RHEL-08-030070
+  - NIST-800-171-3.3.1
+  - NIST-800-53-AC-6(1)
+  - NIST-800-53-AU-9(4)
+  - NIST-800-53-CM-6(a)
+  - PCI-DSS-Req-10.5
+  - PCI-DSSv4-10.3
+  - PCI-DSSv4-10.3.1
+  - file_permissions_var_log_audit
+  - low_complexity
+  - low_disruption
+  - medium_severity
+  - no_reboot_needed
+  - restrict_strategy
+
+- name: System Audit Logs Must Have Mode 0640 or Less Permissive - Set audit log file permissions
+  ansible.builtin.file:
+    path: '{{ log_file_path }}'
+    state: file
+    mode: '{{ ''0600'' if log_group == ''root'' else ''0640'' }}'
   when:
   - DISA_STIG_RHEL_08_030070 | bool
   - file_permissions_var_log_audit | bool
