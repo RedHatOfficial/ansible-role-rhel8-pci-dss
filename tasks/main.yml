@@ -417,6 +417,31 @@
   - no_reboot_needed | bool
   - package_ftp_removed | bool
 
+- name: Ensure postfix is installed
+  ansible.builtin.package:
+    name: postfix
+    state: present
+  when:
+  - DISA_STIG_RHEL_08_030030 | bool
+  - enable_strategy | bool
+  - low_complexity | bool
+  - low_disruption | bool
+  - medium_severity | bool
+  - no_reboot_needed | bool
+  - package_postfix_installed | bool
+  - '"kernel-core" in ansible_facts.packages'
+  tags:
+  - CCE-85983-5
+  - DISA-STIG-RHEL-08-030030
+  - PCI-DSSv4-10.5
+  - PCI-DSSv4-10.5.1
+  - enable_strategy
+  - low_complexity
+  - low_disruption
+  - medium_severity
+  - no_reboot_needed
+  - package_postfix_installed
+
 - name: Ensure chrony is installed
   ansible.builtin.package:
     name: chrony
@@ -441,7 +466,7 @@
   - no_reboot_needed
   - package_chrony_installed
 
-- name: 'Uninstall xinetd Package: Ensure xinetd is removed'
+- name: 'Uninstall xinetd package if not used by network services: Ensure xinetd is removed'
   ansible.builtin.package:
     name: xinetd
     state: absent
@@ -2319,7 +2344,7 @@
 
 - name: Enable GNOME3 Screensaver Lock After Idle Period - Enable GNOME3 Screensaver Lock After Idle Period
   community.general.ini_file:
-    dest: /etc/dconf/db/local.d/00-security-settings
+    dest: /etc/dconf/db/gdm.d/00-security-settings
     section: org/gnome/desktop/lockdown
     option: disable-lock-screen
     value: 'false'
@@ -2354,7 +2379,7 @@
 
 - name: Enable GNOME3 Screensaver Lock After Idle Period - Prevent user modification of GNOME disable-lock-screen
   ansible.builtin.lineinfile:
-    path: /etc/dconf/db/local.d/locks/00-security-settings-lock
+    path: /etc/dconf/db/gdm.d/locks/00-security-settings-lock
     regexp: ^/org/gnome/desktop/lockdown/disable-lock-screen$
     line: /org/gnome/desktop/lockdown/disable-lock-screen
     create: true
@@ -9071,7 +9096,7 @@
 
 - name: Lock the password of the user accounts other than root with uid 0
   ansible.builtin.command: passwd -l {{ item.key }}
-  loop: '{{ getent_passwd | dict2items | rejectattr(''key'', ''search'', ''root'') | list }}'
+  loop: '{{ getent_passwd | dict2items | rejectattr(''key'', ''equalto'', ''root'') | list }}'
   when:
   - DISA_STIG_RHEL_08_040200 | bool
   - accounts_no_uid_except_zero | bool
@@ -9365,31 +9390,6 @@
   - no_reboot_needed
   - restrict_strategy
   - securetty_root_login_console_only
-
-- name: Enforce Usage of pam_wheel with Group Parameter for su Authentication - Add the group to the /etc/pam.d/su file
-  ansible.builtin.lineinfile:
-    path: /etc/pam.d/su
-    state: present
-    regexp: ^[\s]*#[\s]*auth[\s]+required[\s]+pam_wheel\.so[\s]+use_uid group=$
-    line: auth             required        pam_wheel.so use_uid group={{ var_pam_wheel_group_for_su }}
-  when:
-  - low_complexity | bool
-  - low_disruption | bool
-  - medium_severity | bool
-  - no_reboot_needed | bool
-  - restrict_strategy | bool
-  - use_pam_wheel_group_for_su | bool
-  - '"pam" in ansible_facts.packages'
-  tags:
-  - CCE-86064-3
-  - PCI-DSSv4-2.2
-  - PCI-DSSv4-2.2.6
-  - low_complexity
-  - low_disruption
-  - medium_severity
-  - no_reboot_needed
-  - restrict_strategy
-  - use_pam_wheel_group_for_su
 
 - name: Correct any occurrence of TMOUT in /etc/profile
   ansible.builtin.replace:
@@ -10949,7 +10949,7 @@
   - medium_severity | bool
   - no_reboot_needed | bool
   - '"kernel-core" in ansible_facts.packages'
-  - ansible_facts.services['firewalld.service'].state == 'running'
+  - ('firewalld.service' in ansible_facts.services and ansible_facts.services['firewalld.service'].state == 'running')
   tags:
   - CCE-87272-1
   - PCI-DSSv4-1.4
@@ -10964,7 +10964,8 @@
 - name: Configure Firewalld to Restrict Loopback Traffic - Informative Message Based on Service State
   ansible.builtin.assert:
     that:
-    - ansible_check_mode or ansible_facts.services['firewalld.service'].state == 'running'
+    - (ansible_check_mode or ('firewalld.service' in ansible_facts.services and ansible_facts.services['firewalld.service'].state
+      == 'running'))
     fail_msg:
     - firewalld service is not active. Remediation aborted!
     - This remediation could not be applied because it depends on firewalld service running.
@@ -11012,7 +11013,7 @@
   - medium_severity | bool
   - no_reboot_needed | bool
   - '"kernel-core" in ansible_facts.packages'
-  - ansible_facts.services['firewalld.service'].state == 'running'
+  - ('firewalld.service' in ansible_facts.services and ansible_facts.services['firewalld.service'].state == 'running')
   tags:
   - CCE-87278-8
   - PCI-DSSv4-1.4
@@ -11027,7 +11028,8 @@
 - name: Configure Firewalld to Trust Loopback Traffic - Informative Message Based on Service State
   ansible.builtin.assert:
     that:
-    - ansible_check_mode or ansible_facts.services['firewalld.service'].state == 'running'
+    - (ansible_check_mode or ('firewalld.service' in ansible_facts.services and ansible_facts.services['firewalld.service'].state
+      == 'running'))
     fail_msg:
     - firewalld service is not active. Remediation aborted!
     - This remediation could not be applied because it depends on firewalld service running.
@@ -13282,7 +13284,7 @@
   - wireless_disable_interfaces | bool
   - ( not ( ansible_virtualization_type in ["docker", "lxc", "openvz", "podman", "container"] ) )
   - '''NetworkManager'' in ansible_facts.packages'
-  - ansible_facts.services['NetworkManager.service'].state == 'running'
+  - ('NetworkManager.service' in ansible_facts.services and ansible_facts.services['NetworkManager.service'].state == 'running')
   tags:
   - CCE-83501-7
   - DISA-STIG-RHEL-08-040110
@@ -17669,13 +17671,30 @@
   - no_reboot_needed
 
 - name: Make changes to Postfix configuration file
-  ansible.builtin.lineinfile:
-    path: /etc/postfix/main.cf
-    create: false
-    regexp: (?i)^inet_interfaces\s*=\s.*
-    line: inet_interfaces = {{ var_postfix_inet_interfaces }}
-    state: present
-    insertafter: ^inet_interfaces\s*=\s.*
+  block:
+  - name: Check for duplicate values
+    ansible.builtin.lineinfile:
+      path: /etc/postfix/main.cf
+      create: false
+      regexp: (?i)^inet_interfaces\s*=\s*.*$
+      state: absent
+    check_mode: true
+    changed_when: false
+    register: dupes
+  - name: Deduplicate values from /etc/postfix/main.cf
+    ansible.builtin.lineinfile:
+      path: /etc/postfix/main.cf
+      create: false
+      regexp: (?i)^inet_interfaces\s*=\s*.*$
+      state: absent
+    when: dupes.found is defined and dupes.found > 1
+  - name: Insert correct line to /etc/postfix/main.cf
+    ansible.builtin.lineinfile:
+      path: /etc/postfix/main.cf
+      create: false
+      regexp: (?i)^inet_interfaces\s*=\s*.*$
+      line: inet_interfaces = {{ var_postfix_inet_interfaces }}
+      state: present
   when:
   - low_complexity | bool
   - low_disruption | bool
@@ -17684,7 +17703,6 @@
   - postfix_network_listening_disabled | bool
   - restrict_strategy | bool
   - '"kernel-core" in ansible_facts.packages'
-  - '"postfix" in ansible_facts.packages'
   - '"postfix" in ansible_facts.packages'
   tags:
   - CCE-82174-4
@@ -22234,7 +22252,7 @@
   - '"audit" in ansible_facts.packages'
   - '"kernel-core" in ansible_facts.packages'
   - (augenrules_audit_rules_privilege_function_update_result.changed or auditctl_audit_rules_privilege_function_update_result.changed)
-  - ansible_facts.services["auditd.service"].state == "running"
+  - ("auditd.service" in ansible_facts.services and ansible_facts.services["auditd.service"].state == "running")
   tags:
   - CCE-83556-1
   - DISA-STIG-RHEL-08-030000
