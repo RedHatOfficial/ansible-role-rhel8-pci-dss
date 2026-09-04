@@ -1029,8 +1029,8 @@
   - no_reboot_needed | bool
   - restrict_strategy | bool
   - rpm_verify_hashes | bool
-  - not ( "kernel-core" in ansible_facts.packages and "rpm-ostree" in ansible_facts.packages and "bootc" in ansible_facts.packages
-    and not "openshift-kubelet" in ansible_facts.packages and "ostree" in ansible_proc_cmdline )
+  - not ( "kernel-core" in ansible_facts.packages and "bootc" in ansible_facts.packages and not "openshift-kubelet" in ansible_facts.packages
+    and "ostree" in ansible_proc_cmdline )
   - ansible_distribution in [ "Fedora", "RedHat", "CentOS", "OracleLinux", "AlmaLinux" ]
   tags:
   - CCE-80857-6
@@ -1062,8 +1062,8 @@
   - no_reboot_needed | bool
   - restrict_strategy | bool
   - rpm_verify_hashes | bool
-  - not ( "kernel-core" in ansible_facts.packages and "rpm-ostree" in ansible_facts.packages and "bootc" in ansible_facts.packages
-    and not "openshift-kubelet" in ansible_facts.packages and "ostree" in ansible_proc_cmdline )
+  - not ( "kernel-core" in ansible_facts.packages and "bootc" in ansible_facts.packages and not "openshift-kubelet" in ansible_facts.packages
+    and "ostree" in ansible_proc_cmdline )
   - ansible_distribution == "SLES"
   tags:
   - CCE-80857-6
@@ -1099,8 +1099,8 @@
   - no_reboot_needed | bool
   - restrict_strategy | bool
   - rpm_verify_hashes | bool
-  - not ( "kernel-core" in ansible_facts.packages and "rpm-ostree" in ansible_facts.packages and "bootc" in ansible_facts.packages
-    and not "openshift-kubelet" in ansible_facts.packages and "ostree" in ansible_proc_cmdline )
+  - not ( "kernel-core" in ansible_facts.packages and "bootc" in ansible_facts.packages and not "openshift-kubelet" in ansible_facts.packages
+    and "ostree" in ansible_proc_cmdline )
   - (package_manager_reinstall_cmd is defined)
   tags:
   - CCE-80857-6
@@ -1136,8 +1136,8 @@
   - no_reboot_needed | bool
   - restrict_strategy | bool
   - rpm_verify_hashes | bool
-  - not ( "kernel-core" in ansible_facts.packages and "rpm-ostree" in ansible_facts.packages and "bootc" in ansible_facts.packages
-    and not "openshift-kubelet" in ansible_facts.packages and "ostree" in ansible_proc_cmdline )
+  - not ( "kernel-core" in ansible_facts.packages and "bootc" in ansible_facts.packages and not "openshift-kubelet" in ansible_facts.packages
+    and "ostree" in ansible_proc_cmdline )
   - files_with_incorrect_hash.stdout_lines is defined
   - (files_with_incorrect_hash.stdout_lines | length > 0)
   tags:
@@ -1170,8 +1170,8 @@
   - no_reboot_needed | bool
   - restrict_strategy | bool
   - rpm_verify_hashes | bool
-  - not ( "kernel-core" in ansible_facts.packages and "rpm-ostree" in ansible_facts.packages and "bootc" in ansible_facts.packages
-    and not "openshift-kubelet" in ansible_facts.packages and "ostree" in ansible_proc_cmdline )
+  - not ( "kernel-core" in ansible_facts.packages and "bootc" in ansible_facts.packages and not "openshift-kubelet" in ansible_facts.packages
+    and "ostree" in ansible_proc_cmdline )
   - files_with_incorrect_hash.stdout_lines is defined
   - (package_manager_reinstall_cmd is defined and (files_with_incorrect_hash.stdout_lines | length > 0))
   tags:
@@ -1207,8 +1207,8 @@
   - no_reboot_needed | bool
   - restrict_strategy | bool
   - rpm_verify_ownership | bool
-  - not ( "kernel-core" in ansible_facts.packages and "rpm-ostree" in ansible_facts.packages and "bootc" in ansible_facts.packages
-    and not "openshift-kubelet" in ansible_facts.packages and "ostree" in ansible_proc_cmdline )
+  - not ( "kernel-core" in ansible_facts.packages and "bootc" in ansible_facts.packages and not "openshift-kubelet" in ansible_facts.packages
+    and "ostree" in ansible_proc_cmdline )
   tags:
   - CCE-82196-7
   - CJIS-5.10.4.1
@@ -1243,8 +1243,8 @@
   - no_reboot_needed | bool
   - restrict_strategy | bool
   - rpm_verify_ownership | bool
-  - not ( "kernel-core" in ansible_facts.packages and "rpm-ostree" in ansible_facts.packages and "bootc" in ansible_facts.packages
-    and not "openshift-kubelet" in ansible_facts.packages and "ostree" in ansible_proc_cmdline )
+  - not ( "kernel-core" in ansible_facts.packages and "bootc" in ansible_facts.packages and not "openshift-kubelet" in ansible_facts.packages
+    and "ostree" in ansible_proc_cmdline )
   - (files_with_incorrect_ownership.stdout_lines | length > 0)
   tags:
   - CCE-82196-7
@@ -1276,8 +1276,8 @@
   - no_reboot_needed | bool
   - restrict_strategy | bool
   - rpm_verify_ownership | bool
-  - not ( "kernel-core" in ansible_facts.packages and "rpm-ostree" in ansible_facts.packages and "bootc" in ansible_facts.packages
-    and not "openshift-kubelet" in ansible_facts.packages and "ostree" in ansible_proc_cmdline )
+  - not ( "kernel-core" in ansible_facts.packages and "bootc" in ansible_facts.packages and not "openshift-kubelet" in ansible_facts.packages
+    and "ostree" in ansible_proc_cmdline )
   - (files_with_incorrect_ownership.stdout_lines | length > 0)
   tags:
   - CCE-82196-7
@@ -1360,6 +1360,7 @@
     dest: /var/lib/aide/aide.db.gz
     backup: true
     remote_src: true
+    mode: 420
   when:
   - DISA_STIG_RHEL_08_010359 | bool
   - aide_build_database | bool
@@ -1824,6 +1825,7 @@
     value: 'false'
     no_extra_spaces: true
     create: true
+    mode: 420
   when:
   - DISA_STIG_RHEL_08_010820 | bool
   - gnome_gdm_disable_automatic_login | bool
@@ -1857,6 +1859,7 @@
     value: 'false'
     no_extra_spaces: true
     create: true
+    mode: 420
   when:
   - gnome_gdm_disable_guest_login | bool
   - high_severity | bool
@@ -1883,6 +1886,7 @@
 
 - name: Disable GNOME3 Automounting - automount
   community.general.ini_file:
+    mode: 420
     dest: /etc/dconf/db/local.d/00-security-settings
     section: org/gnome/desktop/media-handling
     option: automount
@@ -1915,6 +1919,7 @@
 
 - name: Prevent user modification of GNOME3 Automounting - automount
   ansible.builtin.lineinfile:
+    mode: 420
     path: /etc/dconf/db/local.d/locks/00-security-settings-lock
     regexp: ^/org/gnome/desktop/media-handling/automount$
     line: /org/gnome/desktop/media-handling/automount
@@ -1971,6 +1976,7 @@
 
 - name: Disable GNOME3 Automounting - automount-open
   community.general.ini_file:
+    mode: 420
     dest: /etc/dconf/db/local.d/00-security-settings
     section: org/gnome/desktop/media-handling
     option: automount-open
@@ -2003,6 +2009,7 @@
 
 - name: Prevent user modification of GNOME3 Automounting - automount-open
   ansible.builtin.lineinfile:
+    mode: 420
     path: /etc/dconf/db/local.d/locks/00-security-settings-lock
     regexp: ^/org/gnome/desktop/media-handling/automount-open$
     line: /org/gnome/desktop/media-handling/automount-open
@@ -2059,6 +2066,7 @@
 
 - name: Enable GNOME3 Screensaver Idle Activation
   community.general.ini_file:
+    mode: 420
     dest: /etc/dconf/db/local.d/00-security-settings
     section: org/gnome/desktop/screensaver
     option: idle-activation-enabled
@@ -2092,6 +2100,7 @@
 
 - name: Prevent user modification of GNOME idle-activation-enabled
   ansible.builtin.lineinfile:
+    mode: 420
     path: /etc/dconf/db/local.d/locks/00-security-settings-lock
     regexp: ^/org/gnome/desktop/screensaver/idle-activation-enabled$
     line: /org/gnome/desktop/screensaver/idle-activation-enabled
@@ -2150,6 +2159,7 @@
 
 - name: Set GNOME3 Screensaver Inactivity Timeout
   community.general.ini_file:
+    mode: 420
     dest: /etc/dconf/db/local.d/00-security-settings
     section: org/gnome/desktop/session
     option: idle-delay
@@ -2214,6 +2224,7 @@
 
 - name: Set GNOME3 Screensaver Lock Delay After Activation Period
   community.general.ini_file:
+    mode: 420
     dest: /etc/dconf/db/local.d/00-security-settings
     section: org/gnome/desktop/screensaver
     option: lock-delay
@@ -2282,6 +2293,7 @@
     value: 'true'
     create: true
     no_extra_spaces: true
+    mode: 420
   when:
   - DISA_STIG_RHEL_08_020030 | bool
   - dconf_gnome_screensaver_lock_enabled | bool
@@ -2315,6 +2327,7 @@
     regexp: ^/org/gnome/desktop/screensaver/lock-enabled$
     line: /org/gnome/desktop/screensaver/lock-enabled
     create: true
+    mode: 420
   when:
   - DISA_STIG_RHEL_08_020030 | bool
   - dconf_gnome_screensaver_lock_enabled | bool
@@ -2350,6 +2363,7 @@
     value: 'false'
     create: true
     no_extra_spaces: true
+    mode: 420
   when:
   - DISA_STIG_RHEL_08_020030 | bool
   - dconf_gnome_screensaver_lock_enabled | bool
@@ -2383,6 +2397,7 @@
     regexp: ^/org/gnome/desktop/lockdown/disable-lock-screen$
     line: /org/gnome/desktop/lockdown/disable-lock-screen
     create: true
+    mode: 420
   when:
   - DISA_STIG_RHEL_08_020030 | bool
   - dconf_gnome_screensaver_lock_enabled | bool
@@ -2529,6 +2544,7 @@
 
 - name: Implement Blank Screensaver
   community.general.ini_file:
+    mode: 420
     dest: /etc/dconf/db/local.d/00-security-settings
     section: org/gnome/desktop/screensaver
     option: picture-uri
@@ -2563,6 +2579,7 @@
 
 - name: Prevent user modification of GNOME picture-uri
   ansible.builtin.lineinfile:
+    mode: 420
     path: /etc/dconf/db/local.d/locks/00-security-settings-lock
     regexp: ^/org/gnome/desktop/screensaver/picture-uri$
     line: /org/gnome/desktop/screensaver/picture-uri
@@ -2623,6 +2640,7 @@
 
 - name: Prevent user modification of GNOME Session idle-delay
   ansible.builtin.lineinfile:
+    mode: 420
     path: /etc/dconf/db/local.d/locks/00-security-settings-lock
     regexp: ^/org/gnome/desktop/session/idle-delay$
     line: /org/gnome/desktop/session/idle-delay
@@ -7802,6 +7820,7 @@
     dest: /etc/security/pwquality.conf
     regexp: ^#?\s*dcredit
     line: dcredit = {{ var_password_pam_dcredit }}
+    mode: 420
   when:
   - DISA_STIG_RHEL_08_020130 | bool
   - accounts_password_pam_dcredit | bool
@@ -7900,6 +7919,7 @@
     dest: /etc/security/pwquality.conf
     regexp: ^#?\s*lcredit
     line: lcredit = {{ var_password_pam_lcredit }}
+    mode: 420
   when:
   - DISA_STIG_RHEL_08_020120 | bool
   - accounts_password_pam_lcredit | bool
@@ -8000,6 +8020,7 @@
     dest: /etc/security/pwquality.conf
     regexp: ^#?\s*minlen
     line: minlen = {{ var_password_pam_minlen }}
+    mode: 420
   when:
   - DISA_STIG_RHEL_08_020230 | bool
   - accounts_password_pam_minlen | bool
@@ -8036,6 +8057,7 @@
     line: crypt_style = {{ var_password_hashing_algorithm_pam }}
     state: present
     create: true
+    mode: 420
   when:
   - low_complexity | bool
   - low_disruption | bool
@@ -8069,6 +8091,7 @@
     line: ENCRYPT_METHOD {{ var_password_hashing_algorithm.split('|')[0] }}
     state: present
     create: true
+    mode: 420
   when:
   - DISA_STIG_RHEL_08_010110 | bool
   - low_complexity | bool
@@ -8594,6 +8617,7 @@
     dest: /etc/default/useradd
     regexp: ^INACTIVE
     line: INACTIVE={{ var_account_disable_post_pw_expiration }}
+    mode: 420
   when:
   - DISA_STIG_RHEL_08_020260 | bool
   - account_disable_post_pw_expiration | bool
@@ -8626,8 +8650,9 @@
   ansible.builtin.lineinfile:
     create: true
     dest: /etc/login.defs
-    regexp: ^#?PASS_MAX_DAYS
+    regexp: ^PASS_MAX_DAYS
     line: PASS_MAX_DAYS {{ var_accounts_maximum_age_login_defs }}
+    mode: 420
   when:
   - DISA_STIG_RHEL_08_020200 | bool
   - accounts_maximum_age_login_defs | bool
@@ -8777,6 +8802,7 @@
     state: present
     line: PASS_WARN_AGE        {{ var_accounts_password_warn_age_login_defs }}
     create: true
+    mode: 420
   when:
   - accounts_password_warn_age_login_defs | bool
   - low_complexity | bool
@@ -9137,7 +9163,7 @@
   - medium_severity | bool
   - no_reboot_needed | bool
   - restrict_strategy | bool
-  - '"kernel-core" in ansible_facts.packages'
+  - ( "pam" in ansible_facts.packages and "kernel-core" in ansible_facts.packages )
   tags:
   - CCE-86071-8
   - PCI-DSSv4-2.2
@@ -9163,7 +9189,7 @@
   - medium_severity | bool
   - no_reboot_needed | bool
   - restrict_strategy | bool
-  - '"kernel-core" in ansible_facts.packages'
+  - ( "pam" in ansible_facts.packages and "kernel-core" in ansible_facts.packages )
   tags:
   - CCE-86071-8
   - PCI-DSSv4-2.2
@@ -9179,6 +9205,7 @@
   ansible.builtin.copy:
     dest: /etc/securetty
     content: ''
+    mode: 420
   when:
   - low_complexity | bool
   - low_disruption | bool
@@ -9398,7 +9425,7 @@
     replace: typeset -xr TMOUT={{ var_accounts_tmout }}
   register: profile_replaced
   when:
-  - DISA_STIG_RHEL_08_020353 | bool
+  - DISA_STIG_RHEL_08_020360 | bool
   - accounts_tmout | bool
   - low_complexity | bool
   - low_disruption | bool
@@ -9408,7 +9435,7 @@
   - '"kernel-core" in ansible_facts.packages'
   tags:
   - CCE-80673-7
-  - DISA-STIG-RHEL-08-020353
+  - DISA-STIG-RHEL-08-020360
   - NIST-800-171-3.1.11
   - NIST-800-53-AC-12
   - NIST-800-53-AC-2(5)
@@ -9428,10 +9455,11 @@
     path: /etc/profile.d/tmout.sh
     create: true
     regexp: TMOUT=
+    mode: '0644'
     line: typeset -xr TMOUT={{ var_accounts_tmout }}
     state: present
   when:
-  - DISA_STIG_RHEL_08_020353 | bool
+  - DISA_STIG_RHEL_08_020360 | bool
   - accounts_tmout | bool
   - low_complexity | bool
   - low_disruption | bool
@@ -9441,7 +9469,7 @@
   - '"kernel-core" in ansible_facts.packages'
   tags:
   - CCE-80673-7
-  - DISA-STIG-RHEL-08-020353
+  - DISA-STIG-RHEL-08-020360
   - NIST-800-171-3.1.11
   - NIST-800-53-AC-12
   - NIST-800-53-AC-2(5)
@@ -10132,7 +10160,7 @@
 
     grep -iozP "action\s*\(\s*type\s*=\s*\"omfile\"[^\)]*\)" {{ item.1.path }} | \
 
-    grep -iaoP "\bFile\s*=\s*\"([/[:alnum:][:punct:]]*)\"\s*\)" | \
+    grep -iaoP "\bFile\s*=\s*\"([/[:alnum:][:punct:]]*)\"" | \
 
     grep -oE "\"([/[:alnum:][:punct:]]*)\"" | \
 
@@ -10426,7 +10454,7 @@
 
     grep -iozP "action\s*\(\s*type\s*=\s*\"omfile\"[^\)]*\)" {{ item.1.path }} | \
 
-    grep -iaoP "\bFile\s*=\s*\"([/[:alnum:][:punct:]]*)\"\s*\)" | \
+    grep -iaoP "\bFile\s*=\s*\"([/[:alnum:][:punct:]]*)\"" | \
 
     grep -oE "\"([/[:alnum:][:punct:]]*)\"" | \
 
@@ -10720,7 +10748,7 @@
 
     grep -iozP "action\s*\(\s*type\s*=\s*\"omfile\"[^\)]*\)" {{ item.1.path }} | \
 
-    grep -iaoP "\bFile\s*=\s*\"([/[:alnum:][:punct:]]*)\"\s*\)" | \
+    grep -iaoP "\bFile\s*=\s*\"([/[:alnum:][:punct:]]*)\"" | \
 
     grep -oE "\"([/[:alnum:][:punct:]]*)\"" | \
 
@@ -10825,6 +10853,7 @@
     value: '{{ item.value }}'
     no_extra_spaces: true
     create: true
+    mode: 420
   loop:
   - option: Identity
     value: default
@@ -13150,6 +13179,7 @@
     dest: /etc/modprobe.d/dccp.conf
     regexp: install\s+dccp
     line: install dccp /bin/false
+    mode: 420
   when:
   - disable_strategy | bool
   - kernel_module_dccp_disabled | bool
@@ -13181,6 +13211,7 @@
     dest: /etc/modprobe.d/dccp.conf
     regexp: ^blacklist dccp$
     line: blacklist dccp
+    mode: 420
   when:
   - disable_strategy | bool
   - kernel_module_dccp_disabled | bool
@@ -13212,6 +13243,7 @@
     dest: /etc/modprobe.d/sctp.conf
     regexp: install\s+sctp
     line: install sctp /bin/false
+    mode: 420
   when:
   - DISA_STIG_RHEL_08_040023 | bool
   - disable_strategy | bool
@@ -13245,6 +13277,7 @@
     dest: /etc/modprobe.d/sctp.conf
     regexp: ^blacklist sctp$
     line: blacklist sctp
+    mode: 420
   when:
   - DISA_STIG_RHEL_08_040023 | bool
   - disable_strategy | bool
@@ -14801,6 +14834,7 @@
     dest: /etc/modprobe.d/usb-storage.conf
     regexp: install\s+usb-storage
     line: install usb-storage /bin/false
+    mode: 420
   when:
   - DISA_STIG_RHEL_08_040080 | bool
   - disable_strategy | bool
@@ -14832,6 +14866,7 @@
     dest: /etc/modprobe.d/usb-storage.conf
     regexp: ^blacklist usb-storage$
     line: blacklist usb-storage
+    mode: 420
   when:
   - DISA_STIG_RHEL_08_040080 | bool
   - disable_strategy | bool
@@ -15149,6 +15184,7 @@
     state: present
     no_extra_spaces: true
     create: true
+    mode: 420
   when:
   - DISA_STIG_RHEL_08_010675 | bool
   - coredump_disable_backtraces | bool
@@ -15287,6 +15323,7 @@
     state: present
     no_extra_spaces: true
     create: true
+    mode: 420
   when:
   - DISA_STIG_RHEL_08_010674 | bool
   - coredump_disable_storage | bool
@@ -15537,6 +15574,7 @@
   ansible.builtin.file:
     path: '{{ limits_dropin_dir }}'
     state: directory
+    mode: '0755'
   when:
   - DISA_STIG_RHEL_08_010673 | bool
   - disable_users_coredumps | bool
@@ -15569,6 +15607,7 @@
     content: '*     hard   core    0
 
       '
+    mode: '0644'
   when:
   - DISA_STIG_RHEL_08_010673 | bool
   - disable_users_coredumps | bool
@@ -16292,6 +16331,7 @@
     state: touch
     access_time: preserve
     modification_time: preserve
+    mode: 420
   when:
   - DISA_STIG_RHEL_08_010170 | bool
   - high_severity | bool
@@ -18091,6 +18131,7 @@
     line: server {{ item }}
     state: present
     create: true
+    mode: 420
   loop: '{{ var_multiple_time_servers.split(",") }}'
   when:
   - DISA_STIG_RHEL_08_030740 | bool
@@ -18293,7 +18334,7 @@
   - no_reboot_needed
 
 - name: Find root:ssh_keys-owned keys
-  ansible.builtin.command: find -H /etc/ssh/ -maxdepth 1 -user root -regex ".*_key$" -type f -group ssh_keys -perm /u+xs,g+xws,o+xwrt
+  ansible.builtin.command: find -H /etc/ssh/ -maxdepth 1 -user root -regex ".*_key$" -type f -group ssh_keys -perm /u+xs,g+xwrs,o+xwrt
   register: dedicated_group_owned_keys
   changed_when: false
   failed_when: false
@@ -18328,7 +18369,7 @@
 - name: Set permissions for root:ssh_keys-owned keys
   ansible.builtin.file:
     path: '{{ item }}'
-    mode: u-xs,g-xws,o-xwrt
+    mode: u-xs,g-xwrs,o-xwrt
     state: file
   with_items:
   - '{{ dedicated_group_owned_keys.stdout_lines }}'
@@ -18434,6 +18475,7 @@
       path: /etc/ssh/sshd_config
       create: true
       regexp: (?i)(?i)^\s*ClientAliveCountMax\s+
+      mode: '0600'
       state: absent
     check_mode: true
     changed_when: false
@@ -18443,6 +18485,7 @@
       path: /etc/ssh/sshd_config
       create: true
       regexp: (?i)(?i)^\s*ClientAliveCountMax\s+
+      mode: '0600'
       state: absent
     when: dupes.found is defined and dupes.found > 1
   - name: Insert correct line to /etc/ssh/sshd_config
@@ -18450,6 +18493,7 @@
       path: /etc/ssh/sshd_config
       create: true
       regexp: (?i)(?i)^\s*ClientAliveCountMax\s+
+      mode: '0600'
       line: ClientAliveCountMax {{ var_sshd_set_keepalive }}
       state: present
       insertbefore: BOF
@@ -18490,6 +18534,7 @@
       path: /etc/ssh/sshd_config
       create: true
       regexp: (?i)(?i)^\s*ClientAliveInterval\s+
+      mode: '0600'
       state: absent
     check_mode: true
     changed_when: false
@@ -18499,6 +18544,7 @@
       path: /etc/ssh/sshd_config
       create: true
       regexp: (?i)(?i)^\s*ClientAliveInterval\s+
+      mode: '0600'
       state: absent
     when: dupes.found is defined and dupes.found > 1
   - name: Insert correct line to /etc/ssh/sshd_config
@@ -18506,6 +18552,7 @@
       path: /etc/ssh/sshd_config
       create: true
       regexp: (?i)(?i)^\s*ClientAliveInterval\s+
+      mode: '0600'
       line: ClientAliveInterval {{ sshd_idle_timeout_value }}
       state: present
       insertbefore: BOF
@@ -18548,6 +18595,7 @@
       path: /etc/ssh/sshd_config
       create: true
       regexp: (?i)(?i)^\s*HostbasedAuthentication\s+
+      mode: '0600'
       state: absent
     check_mode: true
     changed_when: false
@@ -18557,6 +18605,7 @@
       path: /etc/ssh/sshd_config
       create: true
       regexp: (?i)(?i)^\s*HostbasedAuthentication\s+
+      mode: '0600'
       state: absent
     when: dupes.found is defined and dupes.found > 1
   - name: Insert correct line to /etc/ssh/sshd_config
@@ -18564,6 +18613,7 @@
       path: /etc/ssh/sshd_config
       create: true
       regexp: (?i)(?i)^\s*HostbasedAuthentication\s+
+      mode: '0600'
       line: HostbasedAuthentication no
       state: present
       insertbefore: BOF
@@ -18601,6 +18651,7 @@
       path: /etc/ssh/sshd_config
       create: true
       regexp: (?i)(?i)^\s*PermitEmptyPasswords\s+
+      mode: '0600'
       state: absent
     check_mode: true
     changed_when: false
@@ -18610,6 +18661,7 @@
       path: /etc/ssh/sshd_config
       create: true
       regexp: (?i)(?i)^\s*PermitEmptyPasswords\s+
+      mode: '0600'
       state: absent
     when: dupes.found is defined and dupes.found > 1
   - name: Insert correct line to /etc/ssh/sshd_config
@@ -18617,6 +18669,7 @@
       path: /etc/ssh/sshd_config
       create: true
       regexp: (?i)(?i)^\s*PermitEmptyPasswords\s+
+      mode: '0600'
       line: PermitEmptyPasswords no
       state: present
       insertbefore: BOF
@@ -18657,6 +18710,7 @@
       path: /etc/ssh/sshd_config
       create: true
       regexp: (?i)(?i)^\s*IgnoreRhosts\s+
+      mode: '0600'
       state: absent
     check_mode: true
     changed_when: false
@@ -18666,6 +18720,7 @@
       path: /etc/ssh/sshd_config
       create: true
       regexp: (?i)(?i)^\s*IgnoreRhosts\s+
+      mode: '0600'
       state: absent
     when: dupes.found is defined and dupes.found > 1
   - name: Insert correct line to /etc/ssh/sshd_config
@@ -18673,6 +18728,7 @@
       path: /etc/ssh/sshd_config
       create: true
       regexp: (?i)(?i)^\s*IgnoreRhosts\s+
+      mode: '0600'
       line: IgnoreRhosts yes
       state: present
       insertbefore: BOF
@@ -18709,6 +18765,7 @@
       path: /etc/ssh/sshd_config
       create: true
       regexp: (?i)(?i)^\s*PermitRootLogin\s+
+      mode: '0600'
       state: absent
     check_mode: true
     changed_when: false
@@ -18718,6 +18775,7 @@
       path: /etc/ssh/sshd_config
       create: true
       regexp: (?i)(?i)^\s*PermitRootLogin\s+
+      mode: '0600'
       state: absent
     when: dupes.found is defined and dupes.found > 1
   - name: Insert correct line to /etc/ssh/sshd_config
@@ -18725,6 +18783,7 @@
       path: /etc/ssh/sshd_config
       create: true
       regexp: (?i)(?i)^\s*PermitRootLogin\s+
+      mode: '0600'
       line: PermitRootLogin no
       state: present
       insertbefore: BOF
@@ -18768,6 +18827,7 @@
       path: /etc/ssh/sshd_config
       create: true
       regexp: (?i)(?i)^\s*AllowTcpForwarding\s+
+      mode: '0600'
       state: absent
     check_mode: true
     changed_when: false
@@ -18777,6 +18837,7 @@
       path: /etc/ssh/sshd_config
       create: true
       regexp: (?i)(?i)^\s*AllowTcpForwarding\s+
+      mode: '0600'
       state: absent
     when: dupes.found is defined and dupes.found > 1
   - name: Insert correct line to /etc/ssh/sshd_config
@@ -18784,6 +18845,7 @@
       path: /etc/ssh/sshd_config
       create: true
       regexp: (?i)(?i)^\s*AllowTcpForwarding\s+
+      mode: '0600'
       line: AllowTcpForwarding no
       state: present
       insertbefore: BOF
@@ -18814,6 +18876,7 @@
       path: /etc/ssh/sshd_config
       create: true
       regexp: (?i)(?i)^\s*X11Forwarding\s+
+      mode: '0600'
       state: absent
     check_mode: true
     changed_when: false
@@ -18823,6 +18886,7 @@
       path: /etc/ssh/sshd_config
       create: true
       regexp: (?i)(?i)^\s*X11Forwarding\s+
+      mode: '0600'
       state: absent
     when: dupes.found is defined and dupes.found > 1
   - name: Insert correct line to /etc/ssh/sshd_config
@@ -18830,6 +18894,7 @@
       path: /etc/ssh/sshd_config
       create: true
       regexp: (?i)(?i)^\s*X11Forwarding\s+
+      mode: '0600'
       line: X11Forwarding no
       state: present
       insertbefore: BOF
@@ -18863,6 +18928,7 @@
       path: /etc/ssh/sshd_config
       create: true
       regexp: (?i)(?i)^\s*PermitUserEnvironment\s+
+      mode: '0600'
       state: absent
     check_mode: true
     changed_when: false
@@ -18872,6 +18938,7 @@
       path: /etc/ssh/sshd_config
       create: true
       regexp: (?i)(?i)^\s*PermitUserEnvironment\s+
+      mode: '0600'
       state: absent
     when: dupes.found is defined and dupes.found > 1
   - name: Insert correct line to /etc/ssh/sshd_config
@@ -18879,6 +18946,7 @@
       path: /etc/ssh/sshd_config
       create: true
       regexp: (?i)(?i)^\s*PermitUserEnvironment\s+
+      mode: '0600'
       line: PermitUserEnvironment no
       state: present
       insertbefore: BOF
@@ -18918,6 +18986,7 @@
       path: /etc/ssh/sshd_config
       create: true
       regexp: (?i)(?i)^\s*UsePAM\s+
+      mode: '0600'
       state: absent
     check_mode: true
     changed_when: false
@@ -18927,6 +18996,7 @@
       path: /etc/ssh/sshd_config
       create: true
       regexp: (?i)(?i)^\s*UsePAM\s+
+      mode: '0600'
       state: absent
     when: dupes.found is defined and dupes.found > 1
   - name: Insert correct line to /etc/ssh/sshd_config
@@ -18934,6 +19004,7 @@
       path: /etc/ssh/sshd_config
       create: true
       regexp: (?i)(?i)^\s*UsePAM\s+
+      mode: '0600'
       line: UsePAM yes
       state: present
       insertbefore: BOF
@@ -18964,6 +19035,7 @@
       path: /etc/ssh/sshd_config
       create: true
       regexp: (?i)(?i)^\s*LoginGraceTime\s+
+      mode: '0600'
       state: absent
     check_mode: true
     changed_when: false
@@ -18973,6 +19045,7 @@
       path: /etc/ssh/sshd_config
       create: true
       regexp: (?i)(?i)^\s*LoginGraceTime\s+
+      mode: '0600'
       state: absent
     when: dupes.found is defined and dupes.found > 1
   - name: Insert correct line to /etc/ssh/sshd_config
@@ -18980,6 +19053,7 @@
       path: /etc/ssh/sshd_config
       create: true
       regexp: (?i)(?i)^\s*LoginGraceTime\s+
+      mode: '0600'
       line: LoginGraceTime {{ var_sshd_set_login_grace_time }}
       state: present
       insertbefore: BOF
@@ -19010,6 +19084,7 @@
       path: /etc/ssh/sshd_config
       create: true
       regexp: (?i)(?i)^\s*LogLevel\s+
+      mode: '0600'
       state: absent
     check_mode: true
     changed_when: false
@@ -19019,6 +19094,7 @@
       path: /etc/ssh/sshd_config
       create: true
       regexp: (?i)(?i)^\s*LogLevel\s+
+      mode: '0600'
       state: absent
     when: dupes.found is defined and dupes.found > 1
   - name: Insert correct line to /etc/ssh/sshd_config
@@ -19026,6 +19102,7 @@
       path: /etc/ssh/sshd_config
       create: true
       regexp: (?i)(?i)^\s*LogLevel\s+
+      mode: '0600'
       line: LogLevel VERBOSE
       state: present
       insertbefore: BOF
@@ -19060,6 +19137,7 @@
       path: /etc/ssh/sshd_config
       create: true
       regexp: (?i)(?i)^\s*MaxAuthTries\s+
+      mode: '0600'
       state: absent
     check_mode: true
     changed_when: false
@@ -19069,6 +19147,7 @@
       path: /etc/ssh/sshd_config
       create: true
       regexp: (?i)(?i)^\s*MaxAuthTries\s+
+      mode: '0600'
       state: absent
     when: dupes.found is defined and dupes.found > 1
   - name: Insert correct line to /etc/ssh/sshd_config
@@ -19076,6 +19155,7 @@
       path: /etc/ssh/sshd_config
       create: true
       regexp: (?i)(?i)^\s*MaxAuthTries\s+
+      mode: '0600'
       line: MaxAuthTries {{ sshd_max_auth_tries_value }}
       state: present
       insertbefore: BOF
@@ -19106,6 +19186,7 @@
       path: /etc/ssh/sshd_config
       create: true
       regexp: (?i)(?i)^\s*MaxSessions\s+
+      mode: '0600'
       state: absent
     check_mode: true
     changed_when: false
@@ -19115,6 +19196,7 @@
       path: /etc/ssh/sshd_config
       create: true
       regexp: (?i)(?i)^\s*MaxSessions\s+
+      mode: '0600'
       state: absent
     when: dupes.found is defined and dupes.found > 1
   - name: Insert correct line to /etc/ssh/sshd_config
@@ -19122,6 +19204,7 @@
       path: /etc/ssh/sshd_config
       create: true
       regexp: (?i)(?i)^\s*MaxSessions\s+
+      mode: '0600'
       line: MaxSessions {{ var_sshd_max_sessions }}
       state: present
       insertbefore: BOF
@@ -19152,6 +19235,7 @@
       path: /etc/ssh/sshd_config
       create: true
       regexp: (?i)(?i)^\s*MaxStartups\s+
+      mode: '0600'
       state: absent
     check_mode: true
     changed_when: false
@@ -19161,6 +19245,7 @@
       path: /etc/ssh/sshd_config
       create: true
       regexp: (?i)(?i)^\s*MaxStartups\s+
+      mode: '0600'
       state: absent
     when: dupes.found is defined and dupes.found > 1
   - name: Insert correct line to /etc/ssh/sshd_config
@@ -19168,6 +19253,7 @@
       path: /etc/ssh/sshd_config
       create: true
       regexp: (?i)(?i)^\s*MaxStartups\s+
+      mode: '0600'
       line: MaxStartups {{ var_sshd_set_maxstartups }}
       state: present
       insertbefore: BOF
@@ -19198,6 +19284,7 @@
       path: /etc/ssh/sshd_config
       create: true
       regexp: (?i)(?i)^\s*Ciphers\s+
+      mode: '0600'
       state: absent
     check_mode: true
     changed_when: false
@@ -19207,6 +19294,7 @@
       path: /etc/ssh/sshd_config
       create: true
       regexp: (?i)(?i)^\s*Ciphers\s+
+      mode: '0600'
       state: absent
     when: dupes.found is defined and dupes.found > 1
   - name: Insert correct line to /etc/ssh/sshd_config
@@ -19214,6 +19302,7 @@
       path: /etc/ssh/sshd_config
       create: true
       regexp: (?i)(?i)^\s*Ciphers\s+
+      mode: '0600'
       line: Ciphers {{ sshd_approved_ciphers }}
       state: present
       insertbefore: BOF
@@ -19256,6 +19345,7 @@
       path: /etc/ssh/sshd_config
       create: true
       regexp: (?i)(?i)^\s*KexAlgorithms\s+
+      mode: '0600'
       state: absent
     check_mode: true
     changed_when: false
@@ -19265,6 +19355,7 @@
       path: /etc/ssh/sshd_config
       create: true
       regexp: (?i)(?i)^\s*KexAlgorithms\s+
+      mode: '0600'
       state: absent
     when: dupes.found is defined and dupes.found > 1
   - name: Insert correct line to /etc/ssh/sshd_config
@@ -19272,6 +19363,7 @@
       path: /etc/ssh/sshd_config
       create: true
       regexp: (?i)(?i)^\s*KexAlgorithms\s+
+      mode: '0600'
       line: KexAlgorithms {{ sshd_strong_kex }}
       state: present
       insertbefore: BOF
@@ -22179,7 +22271,7 @@
   - restrict_strategy | bool
   - '"audit" in ansible_facts.packages'
   - '"kernel-core" in ansible_facts.packages'
-  - ('"auditd.service" in ansible_facts.services' or '"augenrules.service" in ansible_facts.services')
+  - ('auditd.service' in ansible_facts.services or 'augenrules.service' in ansible_facts.services)
   register: augenrules_audit_rules_privilege_function_update_result
   with_items: '{{ suid_audit_rules }}'
   tags:
@@ -22207,6 +22299,7 @@
     line: '{{  item.rule  }}'
     regexp: '{{ item.regex }}'
     create: true
+    mode: 384
   when:
   - DISA_STIG_RHEL_08_030000 | bool
   - audit_rules_suid_privilege_function | bool
@@ -22217,7 +22310,7 @@
   - restrict_strategy | bool
   - '"audit" in ansible_facts.packages'
   - '"kernel-core" in ansible_facts.packages'
-  - ('"auditd.service" in ansible_facts.services' or '"augenrules.service" in ansible_facts.services')
+  - ('auditd.service' in ansible_facts.services or 'augenrules.service' in ansible_facts.services)
   register: auditctl_audit_rules_privilege_function_update_result
   with_items: '{{ suid_audit_rules }}'
   tags:
@@ -22251,8 +22344,8 @@
   - restrict_strategy | bool
   - '"audit" in ansible_facts.packages'
   - '"kernel-core" in ansible_facts.packages'
-  - (augenrules_audit_rules_privilege_function_update_result.changed or auditctl_audit_rules_privilege_function_update_result.changed)
-  - ("auditd.service" in ansible_facts.services and ansible_facts.services["auditd.service"].state == "running")
+  - augenrules_audit_rules_privilege_function_update_result.changed or auditctl_audit_rules_privilege_function_update_result.changed
+  - ('auditd.service' in ansible_facts.services and ansible_facts.services['auditd.service'].state == 'running')
   tags:
   - CCE-83556-1
   - DISA-STIG-RHEL-08-030000
@@ -33367,6 +33460,7 @@
     regexp: ^active
     line: active = yes
     create: true
+    mode: 416
   when:
   - auditd_audispd_syslog_plugin_activated | bool
   - configure_strategy | bool
@@ -33399,6 +33493,7 @@
     regexp: ^\s*admin_space_left_action\s*=\s*.*$
     state: present
     create: true
+    mode: u-x,g-wx,o-rwx
   when:
   - auditd_data_retention_admin_space_left_action | bool
   - low_complexity | bool
@@ -33434,6 +33529,7 @@
     regexp: ^\s*space_left\s*=\s*.*$
     state: present
     create: true
+    mode: u-x,g-wx,o-rwx
   when:
   - auditd_data_retention_space_left | bool
   - low_complexity | bool
@@ -33467,6 +33563,7 @@
     regexp: ^\s*space_left_action\s*=\s*.*$
     state: present
     create: true
+    mode: u-x,g-wx,o-rwx
   when:
   - DISA_STIG_RHEL_08_030731 | bool
   - auditd_data_retention_space_left_action | bool
@@ -33530,6 +33627,7 @@
       path: /etc/audit/auditd.conf
       create: true
       regexp: (?i)(?i)^\s*name_format\s*=\s*
+      mode: u-x,g-wx,o-rwx
       state: absent
     check_mode: true
     changed_when: false
@@ -33539,6 +33637,7 @@
       path: /etc/audit/auditd.conf
       create: true
       regexp: (?i)(?i)^\s*name_format\s*=\s*
+      mode: u-x,g-wx,o-rwx
       state: absent
     when: dupes.found is defined and dupes.found > 1
   - name: Insert correct line to /etc/audit/auditd.conf
@@ -33546,6 +33645,7 @@
       path: /etc/audit/auditd.conf
       create: true
       regexp: (?i)(?i)^\s*name_format\s*=\s*
+      mode: u-x,g-wx,o-rwx
       line: name_format = {{ auditd_name_format_split }}
       state: present
   when:
